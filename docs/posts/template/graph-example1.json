@@ -1,0 +1,76 @@
+{
+	"$schema": "https://vega.github.io/schema/vega/v5.json",
+	"description": "A basic stacked bar chart example.",
+	"padding": 0,
+	"width": 600,
+	"height": 200,
+	
+	"BC": {
+		"figPosition": "outset-1",
+		"increaseMargin": 2,
+		"minWidth": 600
+	},
+
+	"title": {
+		"text": "Contour plot of a Maungawhau volcano in New Zealand",
+		"subtitle": "(probably should have used an Australian example)"
+	},
+
+	"signals": [
+		{
+			"name": "grid",
+			"init": "data('volcano')[0]"
+		},
+		{
+			"name": "smooth", "value": true
+		}
+	],
+
+	"data": [
+		{
+			"name": "volcano",
+			"url": "/posts/lockdown/data-volcano.json"
+		},
+		{
+			"name": "contours",
+			"source": "volcano",
+			"transform": [
+				{
+					"type": "isocontour",
+					"scale": {"expr": "width / datum.width"},
+					"smooth": {"signal": "smooth"},
+					"thresholds": {"signal": "sequence(90, 195, 5)"}
+				}
+			]
+		}
+	],
+
+	"scales": [
+		{
+			"name": "color",
+			"type": "linear",
+			"domain": [90, 190],
+			"range": {"scheme": "blueorange"}
+		}
+	],
+
+	"marks": [
+		{
+			"type": "path",
+			"from": {"data": "contours"},
+			"encode": {
+				"enter": {
+					"stroke": {"value": "#ccc"},
+					"strokeWidth": {"value": 1},
+					"fill": {"scale": "color", "field": "contour.value"}
+				}
+			},
+			"transform": [
+				{
+					"type": "geopath",
+					"field": "datum.contour"
+				}
+			]
+		}
+	]
+}
