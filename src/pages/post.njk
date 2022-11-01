@@ -1,0 +1,498 @@
+---
+pagination:
+  data: collections.post
+  size: 1
+  alias: post
+permalink: /{{ post.data.slug }}/
+---
+
+{% extends 'base.njk' %}
+
+{% block title %}
+	{{ post.data.title }} | Buckley's Chance
+{% endblock %}
+
+{% block head %}
+
+	{% if post.data.dependencies.katex %}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				renderMathInElement(document.body, {
+					// customised options
+					// • auto-render specific keys, e.g.:
+					delimiters: [
+						{left: '$$', right: '$$', display: true},
+						{left: '$', right: '$', display: false},
+						{left: '\\(', right: '\\)', display: false},
+						{left: '\\[', right: '\\]', display: true}
+					],
+					// • rendering keys, e.g.:
+					throwOnError : false
+				});
+			});
+		</script>
+	{% endif %}
+
+	{% if post.data.dependencies.d3 %}
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v6.min.js"></script>
+	{% endif %}
+
+	{% if post.data.dependencies.vega %}
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+	{% endif %}
+
+	<script type="text/javascript">
+		function loadCSS(path) { 
+			let file = document.createElement("link");
+			file.setAttribute("rel", "stylesheet");
+			file.setAttribute("type", "text/css");
+			file.setAttribute("href", path);
+			document.head.appendChild(file);
+		}
+
+		var graphs = [];
+	</script>
+
+	{% if post.data.hidden %}
+		<meta name="robots" content="noindex">
+		<meta name="googlebot" content="noindex">
+	{% endif %}    
+
+{% endblock %}
+
+{% block body_class %}post{% endblock %}
+
+{% block content %}
+
+	{% if post.data.draft %}
+		<div class="banner">
+			This page is a public draft. All content is provisional.
+		</div>
+	{% endif %}
+
+	<header>
+
+		<a href="/" class="logotype masthead">
+			<span>Buckley's</span>
+			<div class="scene">
+				<div class="cube">
+					<div class="face front">
+						<div class="dots">
+							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+						</div>
+					</div>
+					<div class="face back">
+						<div class="dots">
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+						</div>
+					</div>
+					<div class="face right">
+						<div class="dots">
+							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
+							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
+						</div>
+					</div>
+					<div class="face left">
+						<div class="dots">
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+						</div>
+					</div>
+					<div class="face top">
+						<div class="dots">
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+						</div>
+					</div>
+					<div class="face bottom">
+						<div class="dots">
+							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
+							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
+						</div>
+					</div>
+				</div>
+			</div>
+			<span>Chance</span>
+		</a>
+
+		{% if post.data.tags.includes('page') %}
+			<nav>
+				<div>
+					<a href="/about/">About</a>
+					<a href="/subscribe/">Subscribe</a>
+				</div>
+				<div>
+					<a href="https://twitter.com/BuckleysPub" class="icon"><i class="fab fa-twitter"></i></a>
+					<a href="https://github.com/buckleys-chance" class="icon"><i class="fab fa-github"></i></a>
+					<a href="/rss.xml" class="icon"><i class="fas fa-rss"></i></a>
+				</div>
+			</nav>
+		{% endif %}
+
+		<h1>{{ post.data.title }}</h1>
+
+		<h2>{{ post.data.description | safe }}</h2>
+
+
+		{% if not post.data.tags.includes('page') %}
+			<hr />
+
+			<div class="attributes">
+
+				<h3 class="authors">Authors</h3>
+
+				<div class="author-list">
+					{% for a in post.data.authors %}
+						<a {% if a.name.url %}href="{{ a.name.url }}"{% endif %}>{{ a.name.first }} {{ a.name.last }}</a>
+					{% endfor %}
+				</div>
+
+				<h3 class="affiliations">Affiliations</h3>
+
+				<div class="affiliation-list">
+					{% for a in post.data.authors %}
+						<a {% if a.affiliation.url %}href="{{ a.affiliation.url }}"{% endif %}>{{ a.affiliation.text }}</a>
+					{% endfor %}
+				</div>
+
+				<h3 class="published">Published</h3>
+				
+				{% if post.data.hidden %}
+					<time class="published">(still a draft)</time>
+				{% else %}
+					<time class="published">{{ post.data.date | readable_date | safe }}</time>
+				{% endif %}
+
+				{% if post.data.date_updated %}
+
+					<h3 class="updated">Last&nbsp;Updated</h3>
+
+					{% if post.data.hidden %}
+						<time class="updated">(still a draft)</time>
+					{% else %}
+						<time class="updated">{{ post.data.date_updated | readable_date | safe }}</time>
+					{% endif %}
+
+				{% endif %}
+
+			</div>
+		{% endif %}
+
+	</header>
+
+	<article>
+	
+		{% if post.data.noMarkdown %}
+			{{ post.templateContent | safe }}
+		{% else %}
+			{{ post.templateContent | markdown | footnotes_to_sidenotes | citations | safe }}
+		{% endif %}
+
+	</article>
+
+
+	{% if not post.data.tags.includes('page') %}
+	<div class="backmatter">
+
+		{% if post.data.acknowledgements %}
+			<h1>Acknowledgements</h1>
+			{{ post.data.acknowledgements | markdown | safe }}
+		{% endif %}
+
+		<h1>Data + Code</h1>
+		<p>...</p>
+		
+		{{ post.templateContent | markdown | get_footnotes | safe }}
+		
+
+		{% if post.data.references %}
+			{{ post.data.references | bibliography | safe }}
+		{% endif %}
+		
+		<h1>Corrections</h1>
+		{% if post.data.corrections %}
+			<ul>
+			{% for c in post.data.corrections %}
+			<li>{{ c | markdown | safe }}</li>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>No corrections have been made to this article.</p>
+		{% endif %}
+
+		<h1>Reuse</h1>
+		<p>...</p>
+
+		<h1>Citation</h1>
+		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
+		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Buckley's Chance, {{ post.data.date | get_year }}.</pre>
+		<p>Here is the BibTeX entry.</p>
+<pre>@article{ {{- post.data.slug }}{{ post.data.date | get_year }},
+  author = { {{- post.data.authors | bibtex_authors -}} },
+  title = { {{- post.data.title -}} },
+  journal = {Buckley's Chance},
+  year = { {{- post.data.date | get_year -}} },
+  url = {https://buckleys.pub/{{ post.data.slug }}}
+}</pre>
+
+	</div>
+	{% endif %}
+
+	<script>
+		// UTILITY FUNCTIONS FOR COLLAPSIBLE SECTIONS
+
+		// document.querySelector('.collapsible')
+		// 	.addEventListener("click", function(ev) {
+		// 		ev.target.classList.toggle('collapsed');
+		// 	})
+
+		// UTILITY FUNCTIONS FOR CITATION POPUPS.
+
+		var mouseOverModal = false;
+
+		function create_modal_ref(el, id) {
+			
+			let bibref = document.querySelector(`#bib-${id}`),
+				text_column = document.querySelector('article > p').getBoundingClientRect();
+
+			let ref = document.createElement("div");
+			ref.setAttribute('class', 'hover-ref');
+			ref.setAttribute('style', `top: ${el.getBoundingClientRect().bottom + 10}px; left: ${text_column.left}px; width: ${text_column.right - text_column.left}px;`)
+			ref.setAttribute('onmouseenter', 'hovering()');
+			ref.setAttribute('onmouseleave', 'unhovering()');
+			ref.innerHTML = bibref.innerHTML;
+
+			document.querySelector('article').appendChild(ref); 
+
+			mouseOverModal = true;
+		}
+
+		function destroy_modal_ref() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+
+		function hovering() {
+			mouseOverModal = true;
+		}
+
+		function unhovering() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+	</script>
+
+	<script type="text/javascript">
+
+		var views = {};
+
+		function render(key, spec) {
+			
+			// Add default graph config.
+
+			let defaultConfig = {
+				axis: {
+					labelFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFontSize: 20,
+					titleFontWeight: 400,
+					titleColor: "#33691e"
+				}, 
+				legend: {
+					labelFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFont: "Roboto, Helvetica, Arial, sans-serif",
+					labelFontSize: 18,
+					labelColor: "#000000",
+					titleColor: "#33691e",
+					titlePadding: 15,
+					titleFontSize: 18,
+					symbolSize: 360,
+					labelSeparation: 10,
+					labelOffset: 10,
+					offset: 20,
+					titleFontWeight: 500,
+					labelFontWeight: 300,
+					layout: {
+						margin: 30
+					}
+				},
+				title: {
+					font: "Roboto, Helvetica, Arial, sans-serif",
+					subtitleFont: "Roboto, Helvetica, Arial, sans-serif",
+					fontSize: 22,
+					fontWeight: 500,
+					color: "#33691e",
+					subtitleFontSize: 20,
+					subtitleFontWeight: 300,
+					subtitlePadding: 12,
+					offset: 30
+				}
+			};
+			if (spec.hasOwnProperty('config')) {
+				spec.config.axis = { ...defaultConfig.axis, ...spec.config.axis };
+				spec.config.legend = { ...defaultConfig.legend, ...spec.config.legend };
+				spec.config.title = { ...defaultConfig.title, ...spec.config.title };
+			} else {
+				spec.config = defaultConfig;
+			}
+
+			// Create BC property if doesn't already exist.
+
+			if (!spec.hasOwnProperty('BC')) {
+				spec.BC = {};
+			}
+
+			// Specify renderer if not already specified.
+
+			if (!spec.BC.hasOwnProperty('renderer')) {
+				spec.BC.renderer = 'svg'; // Either 'svg' or 'canvas'.
+			}
+
+			// Define desired aspect ratio.
+
+			if (spec.hasOwnProperty('width') & spec.hasOwnProperty('height')) {
+				spec.BC.aspectRatio = spec.width / spec.height;
+			} else {
+				spec.BC.aspectRatio = 1.5;
+			}
+			delete spec.width;
+			delete spec.height;
+
+			// Define threshold width between two types of graph scaling.
+				// Above this width, the graph is re-rendered to fit the space available.
+				// (eg. text will stay its specified size)
+				// Below this width, the graph is simply scaled down to fit the space available.
+				// (eg. text will be smaller than the specified size)
+			if (!spec.BC.hasOwnProperty('minWidth')) {
+				spec.BC.minWidth = 800;
+			}
+
+			// Generate signals for specified toggles.
+
+			if (!spec.hasOwnProperty('signals')) {
+				spec.signals = [];
+			}
+			if (spec.BC.hasOwnProperty('toggle-groups')) {
+				for (let toggleGroup of spec.BC['toggle-groups']) {
+					for (let toggle of toggleGroup.toggles) {
+						spec.signals.push({
+							name: toggle.signalName,
+							update: `'${toggle.options.filter(d => d.default)[0].value}'`,
+							on: [{
+								events: {
+									source: `#select-${key}-${toggle.signalName}`,
+									type: "change"
+								},
+								update: "event.target.value"
+							}]
+						})
+					}
+				}
+			}
+
+			// Store reference to wrapper element.
+
+			spec.BC.container = document.querySelector(`#graph-container-${key}`);
+
+			// Create the view.
+
+			let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+			vegaEmbed(
+				`#graph-container-${key}`,
+				spec,
+				opt = {
+					renderer: spec.BC.renderer,
+					actions: false,
+					width: width,
+					height: width / spec.BC.aspectRatio
+				}
+			).then(function(result) {
+				
+				views[key] = result.view;
+
+				// Make responsive.
+
+				if (spec.BC.renderer === 'canvas') {
+					
+					spec.BC.resize = () => {
+						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+						views[key]
+							.width(width)
+							.height(width / spec.BC.aspectRatio)
+							.run();
+					};
+					window.addEventListener('resize', spec.BC.resize);
+				
+				} else {
+					
+					function removeWidthHeightAttributes() {
+						// Remove width/height attributes of Vega SVG and let viewBox handle the responsive behaviour.
+						let viewDom = spec.BC.container.firstElementChild;
+						viewDom.removeAttribute('width');
+						viewDom.removeAttribute('height');
+					}
+
+					spec.BC.resize = () => {
+						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+						views[key]
+							.width(width)
+							.height(width / spec.BC.aspectRatio)
+							.runAsync()
+							.then(vw => {
+								removeWidthHeightAttributes();
+							});
+						
+					};
+					window.addEventListener('resize', spec.BC.resize);
+
+					removeWidthHeightAttributes();
+					
+				}
+
+			}).catch(console.error);
+
+			return views[key];
+
+		}
+  
+		for (let key of graphs) {
+		
+			fetch('/posts/{{ post.data.slug }}/graph-' + key + '.json')
+				.then(result => result.json())
+				.then(spec => render(key, spec))
+				.catch(err => console.error(err));
+
+		}
+
+	</script>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="UTF-8" />
+	
+	<title>
+        {% block title %}
+            Buckley's Chance
+        {% endblock %}
+    </title>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- JS -->
+	{% block head %}{% endblock %}
+
+	<!-- Styling -->
+	<script src="https://kit.fontawesome.com/3142a8f83c.js" crossorigin="anonymous" SameSite=Lax></script>
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Roboto+Mono:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+	<!-- ANALYTICS -->
+
+	<!-- (see just before the </body> tag) -->
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+	<div>
+
+	{# <div class="banner">
+		This site is a work-in-progress and has not yet launched. All content is provisional.
+	</div> #}
+
+	{% block content %}{% endblock %}
+
+	</div>
+
+	<footer>
+
+		<div>
+			<a href="/" class="logotype footer">
+				<div class="scene">
+					<div class="cube">
+						<div class="face front">
+							<div class="dots">
+								<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+								<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+								<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+							</div>
+						</div>
+						<div class="face back">
+							<div class="dots">
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							</div>
+						</div>
+						<div class="face right">
+							<div class="dots">
+								<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
+								<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+								<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
+							</div>
+						</div>
+						<div class="face left">
+							<div class="dots">
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+								<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							</div>
+						</div>
+						<div class="face top">
+							<div class="dots">
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+								<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
+								<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
+							</div>
+						</div>
+						<div class="face bottom">
+							<div class="dots">
+								<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
+								<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
+								<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
+							</div>
+						</div>
+					</div>
+				</div>
+				{# <span>Buckley's</span>
+				<span>Chance</span> #}
+			</a>
+
+			<span class="tagline">Data-driven explorable explanations, on topics relevant to Australians.</span>
+
+			<nav>
+				<a href="/">Home</a>
+				<a href="/about/">About</a>
+				<a href="/subscribe/">Subscribe</a>
+				<a href="/contact/">Contact</a>
+
+				<div class="icons">
+					<a href="https://twitter.com/BuckleysPub"><i class="fab fa-twitter"></i></a>
+					<a href="https://github.com/buckleys-chance"><i class="fab fa-github"></i></a>
+					<a href="/rss.xml"><i class="fas fa-rss"></i></a>
+				</div>
+			</nav>
+
+			<div class="colophon">
+				<p>Distributed under a Creative Commons license (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>).</p>
+			</div>
+		</div> 
+
+	</footer>
+
+	<!-- ANALYTICS -->
+	
+	<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddd07e1f2df6465c829b824325f2ee35"}'></script>
+
+</body>
+
+</html>
