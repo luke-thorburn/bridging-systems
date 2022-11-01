@@ -1,17 +1,16 @@
----json
-{
-	"permalink": false,
-	"templateEngineOverride": false,
-	"tags": ["post", "page"],
-	"title": "About this publication",
-	"date": "2021-01-02",
-	"date_updated": "2021-01-02",
-	"slug": "about",
-	"hidden": false,
-	"dependencies": {
-		"katex": true
-	}
-}
+---
+templateEngineOverride: false
+dependencies:
+  katex: true
+date_updated: 2021-01-02
+hidden: false
+slug: about
+permalink: false
+date: 2021-01-02
+title: About these docs
+tags:
+  - post
+  - page
 ---
 
 Buckley's Chance publishes data-driven commentary, visual essays and [explorables](https://en.wikipedia.org/wiki/Explorable_explanation) on topics relevant to Australians that can benefit from a quantitative lens.
