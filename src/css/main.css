@@ -141,7 +141,6 @@ header nav a:hover {
 main {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-column-gap: 40px;
   width: 100%;
   max-width: 100%;
   padding: 40px 0 40px 40px;
@@ -165,6 +164,7 @@ main aside nav a {
   font-weight: 600;
   padding-bottom: 0.7rem;
   margin-top: 1.4rem;
+  margin-right: 40px;
   transition: color 0.1s;
 }
 main aside nav a:hover {
@@ -179,7 +179,6 @@ main aside nav ol {
 }
 main aside nav ol a {
   color: #6f7f8b;
-  padding-left: 0.7rem;
   font-weight: 400;
   margin-top: 0;
 }
@@ -191,7 +190,6 @@ main aside nav > ol {
   padding: 0;
 }
 main aside nav > ol > li > a {
-  color: #000;
   font-weight: 600;
 }
 
@@ -243,11 +241,22 @@ article h1 {
   color: #4a148c;
   text-transform: capitalize;
 }
+article h1.title {
+  color: #000;
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: none;
+}
 article h2 {
   font-size: 1.3rem;
   font-weight: 300;
   font-style: italic;
   color: #4a148c;
+}
+article h2.description {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.2rem;
 }
 article h3 {
   font-size: 1rem;

@@ -251,7 +251,7 @@ main {
 
 	display: grid;
 	grid-template-columns: auto 1fr;
-	grid-column-gap: 40px;
+	// grid-column-gap: 40px;
 
 	width: 100%;
 	max-width: 100%;
@@ -279,6 +279,7 @@ main {
 				font-weight: 600;
 				padding-bottom: $h;
 				margin-top: $p;
+				margin-right: 40px;
 
 				transition: color .1s;
 
@@ -298,7 +299,6 @@ main {
 
 				a {
 					color: #6f7f8b;
-					padding-left: $h;
 					font-weight: 400;
 					margin-top: 0;
 					// font-weight: 600;
@@ -314,7 +314,7 @@ main {
 				padding: 0;
 
 				& > li > a {
-					color: #000;
+					// color: #000;
 					font-weight: 600;
 				}
 			}
@@ -383,6 +383,16 @@ article {
 		font-weight: 300;
 		color: $c1-dark;
 		text-transform: capitalize;
+
+		&.title {
+			color: #000;
+			font-weight: 900;
+			font-size: 2rem;
+			text-transform: none;
+			// text-decoration: underline;
+			// text-decoration-color: $c1-light-highlight;
+			// text-decoration-thickness: 3px;
+		}
 	}
 
 	h2 {
@@ -390,6 +400,13 @@ article {
 		font-weight: 300;
 		font-style: italic;
 		color: $c1-dark;
+
+		&.description {
+			// color: $c1-light-highlight;
+			font-weight: 600;
+			font-style: normal;
+			font-size: 1.2rem;
+		}
 	}
 
 	h3 {

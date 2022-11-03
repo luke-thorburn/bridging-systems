@@ -84,9 +84,9 @@ permalink: /{{ post.data.slug }}/
 
 	<article>
 		
-		<h1>{{ post.data.title }}</h1>
+		<h1 class="title">{% if post.data.longTitle %}{{ post.data.longTitle }}{% else %}{{ post.data.title }}{% endif %}</h1>
 
-		<h2>{{ post.data.description | safe }}</h2>
+		<h2 class="description">{{ post.data.description | safe }}</h2>
 	
 		{% if post.data.noMarkdown %}
 			{{ post.templateContent | safe }}

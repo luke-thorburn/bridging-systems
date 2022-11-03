@@ -76,8 +76,8 @@
 	
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
 
 	<!-- ANALYTICS -->
@@ -135,9 +135,9 @@
 
 	<article>
 		
-		<h1>Template post</h1>
+		<h1 class="title">Template post</h1>
 
-		<h2>This is a template post, with which to refine the stylesheets for posts in general.</h2>
+		<h2 class="description">This is a template post, with which to refine the stylesheets for posts in general.</h2>
 	
 		
 			<p>Articles usually start with an introduction, in the form of a paragraph like this. Then, they might be broken up into sections, using titles like the one below.</p>
@@ -550,7 +550,7 @@ That’s one small step for [a] man, one giant leap for mankind.</p>
 		// Add 'active' class to the relevant link in the header.
 		let links = document.querySelectorAll('header nav a');
 		for (let k = 0; k < links.length; k++) {
-			if (links[k].href == window.location.href) {
+			if (links[k].href == `${window.location.origin}${window.location.pathname}`) {
 				links[k].classList.add('active');
 			}
 		}
