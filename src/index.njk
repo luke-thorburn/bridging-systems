@@ -4,83 +4,7 @@
 
 {% block content %}
 
-	<header class="home">
-
-		<a href="/" class="logotype">
-			<span>Buckley's</span>
-			<div class="scene">
-				<div class="cube">
-					<div class="face front">
-						<div class="dots">
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-						</div>
-					</div>
-					<div class="face back">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face right">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face left">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face top">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face bottom">
-						<div class="dots">
-							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
-						</div>
-					</div>
-				</div>
-			</div>
-			<span>Chance</span>
-		</a>
-		
-		<nav>
-			<div>
-				<a href="/about/">About</a>
-				<a href="/subscribe/">Subscribe</a>
-			</div>
-			<div>
-				<a href="https://twitter.com/BuckleysPub" class="icon"><i class="fab fa-twitter"></i></a>
-				<a href="https://github.com/buckleys-chance" class="icon"><i class="fab fa-github"></i></a>
-				<a href="/rss.xml" class="icon"><i class="fas fa-rss"></i></a>
-			</div>
-		</nav>
-	</header>
-
-
 	<main class="home">
-
-		<div class="card blurb" style="width: 390px;">
-			Data-driven explorable explanations, on topics relevant to Australians.
-
-			{# <div>
-				<a href="https://twitter.com/BuckleysPub">Subscribe for updates</a>
-				<a href="#">About</a>
-			</div> #}
-		</div>
 
 		{% for post in collections.post | removeHiddenPostsAndPages | reverse %}
 		
@@ -102,26 +26,9 @@
 				{% endif %}
 			</div>
 
-
-			
-			{# <img src="{{ post.data.cover }}" /> #}
-
 		</a>
 
 		{% endfor %}
-
-		<div id="revue-embed" class="card blurb newsletter-signup" style="width: 500px;">
-			<form action="https://www.getrevue.co/profile/buckleys-chance/add_subscriber" method="post" id="revue-form" name="revue-form"  target="_blank">
-				<div class="revue-form-group">
-					<label for="member_email">Email address</label>
-					<input class="revue-form-field" placeholder="Email address" type="email" name="member[email]" id="member_email">
-				</div>
-				<div class="revue-form-actions">
-					<input type="submit" value="Subscribe" name="member[subscribe]" id="member_submit">
-				</div>
-				<div class="revue-form-footer">We use Revue, which is owned by Twitter, to deliver our email notifications. By subscribing, you agree with their <a target="_blank" href="https://www.getrevue.co/terms">Terms</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.</div>
-			</form>
-		</div>
 
 	</main>
 

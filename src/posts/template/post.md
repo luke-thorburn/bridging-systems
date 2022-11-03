@@ -133,20 +133,9 @@ Graphs can also have interactive toggles, which are generated using an extension
 
 You can also import arbitrary content from a HTML file, with (optionally) associated CSS stylesheets or JS scripts. This might be useful for separating out a cumbersome HTML table definition from the main content, or for importing arbitrary graphs that use a different (non-`Vega`) graphing library, such as `d3`.
 
-{% import_content "graph-d3-example", slug %}
-
 Nunc interdum odio a turpis suscipit, eu varius massa lobortis. Integer pellentesque eros ac ipsum ultricies, ac dignissim felis blandit. Integer molestie diam bibendum elit congue tincidunt. Nunc faucibus nulla arcu, nec laoreet nunc porttitor a. Integer ac sapien libero. Etiam nec cursus leo. Proin cursus nec felis a pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc faucibus ultrices lacus. Donec iaculis non tellus at gravida.
 
 ---
-
-{# <div class="collapsible collapsed"
-	data-text="Click to reveal a collapsible section.">
-
-# Collapsible Sections
-
-It can be helpful to have more technical sections collapsed by default so that they don't deter more casual readers. This is one such section.
-
-</div> #}
 
 # Formulae
 
@@ -168,9 +157,7 @@ Nunc interdum odio a turpis suscipit, eu varius massa lobortis. Integer pellente
 
 Duis feugiat dignissim magna. Duis at tristique enim. Phasellus id efficitur augue. Donec ut ante sit amet orci rutrum varius. Maecenas suscipit est odio, eget varius diam aliquet vel. Nulla pulvinar laoreet justo iaculis posuere. Pellentesque vestibulum condimentum eros. Curabitur ipsum lorem, posuere ut viverra ut, finibus vitae purus. In commodo congue urna. Integer cursus, turpis a pulvinar feugiat, orci sapien molestie lacus, ut volutpat magna velit eget quam. Mauris ut libero vitae est eleifend fermentum. Ut vitae felis fermentum, pulvinar ligula a, pharetra diam. Etiam id orci at lorem hendrerit lobortis.
 
-[^example1]:R This is a right sidenote. Note that there are some limitations to sidenotes: no effort is taken to ensure they don't overlap, and there can be only one per paragraph. This is due to the difficulties involved in implementing them robustly across all screen widths and mobile devices. You can, however, specify the side on which they are positioned.
-
-[^example2]:L This is shorter sidenote on the left hand side. Try narrowing the browser window to see what happens when it becomes too narrow to display sidenotes.
+[^example1]: This is a right sidenote. Note that there are some limitations to sidenotes: no effort is taken to ensure they don't overlap, and there can be only one per paragraph. This is due to the difficulties involved in implementing them robustly across all screen widths and mobile devices. You can, however, specify the side on which they are positioned.
 
 ---
 

@@ -361,7 +361,7 @@ module.exports = function(eleventyConfig) {
 
 				new_html = new_html.replace(
 					regex,
-					`<a class="ref" onmouseenter="create_modal_ref(this, '${id}')" onmouseleave="destroy_modal_ref()"><i class="fad fa-file-alt"></i></a>`
+					`<a class="ref" onmouseenter="create_modal_ref(this, '${id}')" onmouseleave="destroy_modal_ref()"><i class="fas fa-file-alt"></i></a>`
 				)
 
 			}
@@ -439,8 +439,7 @@ module.exports = function(eleventyConfig) {
 		footnotes = footnotes.map(function(fn) {
 			let idx = fn.match(/#fnref(\d+)/g)[0].replace(/#fnref/g, ''),
 				text = fn.replace(/ <a href="#fnref\d+" class="footnote-backref">↩︎<\/a>/g, '');
-				side = text[0];
-			text = text.replace(/^(R|L) /g, '');
+				side = 'R';
 			return { idx, side, text };
 		});
 

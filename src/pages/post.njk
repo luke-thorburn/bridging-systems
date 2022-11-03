@@ -9,7 +9,7 @@ permalink: /{{ post.data.slug }}/
 {% extends 'base.njk' %}
 
 {% block title %}
-	{{ post.data.title }} | Buckley's Chance
+	{{ post.data.title }} | Bridging Systems
 {% endblock %}
 
 {% block head %}
@@ -77,125 +77,12 @@ permalink: /{{ post.data.slug }}/
 		</div>
 	{% endif %}
 
-	<header>
 
-		<a href="/" class="logotype masthead">
-			<span>Buckley's</span>
-			<div class="scene">
-				<div class="cube">
-					<div class="face front">
-						<div class="dots">
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-						</div>
-					</div>
-					<div class="face back">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face right">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face left">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face top">
-						<div class="dots">
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="dt"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="dt"></b>
-						</div>
-					</div>
-					<div class="face bottom">
-						<div class="dots">
-							<b class="sp"></b> <b class="sp"></b> <b class="dt"></b>
-							<b class="sp"></b> <b class="sp"></b> <b class="sp"></b>
-							<b class="dt"></b> <b class="sp"></b> <b class="sp"></b>
-						</div>
-					</div>
-				</div>
-			</div>
-			<span>Chance</span>
-		</a>
-
-		{% if post.data.tags.includes('page') %}
-			<nav>
-				<div>
-					<a href="/about/">About</a>
-					<a href="/subscribe/">Subscribe</a>
-				</div>
-				<div>
-					<a href="https://twitter.com/BuckleysPub" class="icon"><i class="fab fa-twitter"></i></a>
-					<a href="https://github.com/buckleys-chance" class="icon"><i class="fab fa-github"></i></a>
-					<a href="/rss.xml" class="icon"><i class="fas fa-rss"></i></a>
-				</div>
-			</nav>
-		{% endif %}
-
+	<article>
+		
 		<h1>{{ post.data.title }}</h1>
 
 		<h2>{{ post.data.description | safe }}</h2>
-
-
-		{% if not post.data.tags.includes('page') %}
-			<hr />
-
-			<div class="attributes">
-
-				<h3 class="authors">Authors</h3>
-
-				<div class="author-list">
-					{% for a in post.data.authors %}
-						<a {% if a.name.url %}href="{{ a.name.url }}"{% endif %}>{{ a.name.first }} {{ a.name.last }}</a>
-					{% endfor %}
-				</div>
-
-				<h3 class="affiliations">Affiliations</h3>
-
-				<div class="affiliation-list">
-					{% for a in post.data.authors %}
-						<a {% if a.affiliation.url %}href="{{ a.affiliation.url }}"{% endif %}>{{ a.affiliation.text }}</a>
-					{% endfor %}
-				</div>
-
-				<h3 class="published">Published</h3>
-				
-				{% if post.data.hidden %}
-					<time class="published">(still a draft)</time>
-				{% else %}
-					<time class="published">{{ post.data.date | readable_date | safe }}</time>
-				{% endif %}
-
-				{% if post.data.date_updated %}
-
-					<h3 class="updated">Last&nbsp;Updated</h3>
-
-					{% if post.data.hidden %}
-						<time class="updated">(still a draft)</time>
-					{% else %}
-						<time class="updated">{{ post.data.date_updated | readable_date | safe }}</time>
-					{% endif %}
-
-				{% endif %}
-
-			</div>
-		{% endif %}
-
-	</header>
-
-	<article>
 	
 		{% if post.data.noMarkdown %}
 			{{ post.templateContent | safe }}
@@ -210,34 +97,28 @@ permalink: /{{ post.data.slug }}/
 	<div class="backmatter">
 
 		{% if post.data.acknowledgements %}
-			<h1>Acknowledgements</h1>
-			{{ post.data.acknowledgements | markdown | safe }}
+			<section>
+				<h1>Acknowledgements</h1>
+				{{ post.data.acknowledgements | markdown | safe }}
+			</section>
 		{% endif %}
 
-		<h1>Data + Code</h1>
-		<p>...</p>
-		
-		{{ post.templateContent | markdown | get_footnotes | safe }}
-		
+		<section>
+			{{ post.templateContent | markdown | get_footnotes | safe }}
+		</section>
 
 		{% if post.data.references %}
-			{{ post.data.references | bibliography | safe }}
+			<section>
+				{{ post.data.references | bibliography | safe }}
+			</section>
 		{% endif %}
 		
-		<h1>Corrections</h1>
-		{% if post.data.corrections %}
-			<ul>
-			{% for c in post.data.corrections %}
-			<li>{{ c | markdown | safe }}</li>
-			{% endfor %}
-			</ul>
-		{% else %}
-			<p>No corrections have been made to this article.</p>
-		{% endif %}
+		<section>
+			<h1>Reuse</h1>
+			<p>Distributed under a Creative Commons license (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>).</p>
+		</section>
 
-		<h1>Reuse</h1>
-		<p>...</p>
-
+		<section>
 		<h1>Citation</h1>
 		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
 		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Buckley's Chance, {{ post.data.date | get_year }}.</pre>
@@ -249,6 +130,7 @@ permalink: /{{ post.data.slug }}/
   year = { {{- post.data.date | get_year -}} },
   url = {https://buckleys.pub/{{ post.data.slug }}}
 }</pre>
+		</section>
 
 	</div>
 	{% endif %}
