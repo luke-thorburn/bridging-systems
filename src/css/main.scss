@@ -280,16 +280,7 @@ main {
 				padding-bottom: $h;
 				margin-top: $p;
 
-				transition: color .5s;
-
-				white-space: nowrap;
-
-				&.indent {
-					color: #6f7f8b;
-					padding-left: $h;
-					font-weight: 400;
-					margin-top: 0;
-				}
+				transition: color .1s;
 
 				&:hover {
 					color: #000;
@@ -297,6 +288,34 @@ main {
 
 				&:first-of-type {
 					margin-top: 0;
+				}
+			}
+
+			
+			ol {
+				list-style: none;
+				padding-left: 10px;
+
+				a {
+					color: #6f7f8b;
+					padding-left: $h;
+					font-weight: 400;
+					margin-top: 0;
+					// font-weight: 600;
+
+					&:hover {
+						color: #000;
+					}
+				}
+			}
+
+			& > ol {
+				margin: 0;
+				padding: 0;
+
+				& > li > a {
+					color: #000;
+					font-weight: 600;
 				}
 			}
 		}
@@ -337,6 +356,11 @@ article {
 }
 
 article {
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: calc(-1 * var(--header-height) - 40px);
+		padding-top: calc(var(--header-height) + 40px);
+	}
 
 	font-size: 1.1rem;
 	line-height: 1.8rem;

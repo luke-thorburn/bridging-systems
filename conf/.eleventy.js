@@ -386,6 +386,7 @@ module.exports = function(eleventyConfig) {
 
 	})
 
+
 	// Add markdown filter.
 	var options = {
 		html: true,
@@ -394,8 +395,8 @@ module.exports = function(eleventyConfig) {
 	var md = require('markdown-it')(options)
 		.use(require('markdown-it-footnote'))
 		.use(require('markdown-it-deflist'))
-		.use(require('markdown-it-attribution'));
-		// .use(require("markdown-it-anchor"))
+		.use(require('markdown-it-attribution'))
+		.use(require("markdown-it-anchor"));
 		// .use(require("markdown-it-toc-done-right"));
 	
 	md.renderer.rules.footnote_ref = (tokens, idx, options, env, slf) => {
@@ -425,6 +426,31 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addFilter("markdown", function(rawString) {
 		return md.render(rawString);
+	});
+
+	// Add filter to generate outline.
+	eleventyConfig.addFilter("outline", function(value) {
+		let options = {
+				html: true,
+				typographer: true
+			},
+			toc;
+		let mdit = require('markdown-it')(options)
+			.use(require('markdown-it-footnote'))
+			.use(require("markdown-it-anchor"))
+			.use(require('markdown-it-attribution'))
+			.use(require("markdown-it-toc-done-right"), {
+				containterClass: 'toc',
+				callback: function(html, ast) {
+					toc = html;
+				}
+			});
+
+		let doc = mdit.render(value);
+
+		let n = toc.length;
+
+		return(toc);
 	});
 
 	// Add filter to convert footnotes to sidenotes.

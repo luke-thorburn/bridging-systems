@@ -125,11 +125,11 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
 
 Non-bespoke graphs are created using `Vega`, such as the one below.
 
-{% import_graph "example1", slug %}
+{# {% import_graph "example1", slug %} #}
 
 Graphs can also have interactive toggles, which are generated using an extension of the `Vega` graph specification. An example of such toggles is below.
 
-{% import_graph "example2", slug %}
+{# {% import_graph "example2", slug %} #}
 
 You can also import arbitrary content from a HTML file, with (optionally) associated CSS stylesheets or JS scripts. This might be useful for separating out a cumbersome HTML table definition from the main content, or for importing arbitrary graphs that use a different (non-`Vega`) graphing library, such as `d3`.
 

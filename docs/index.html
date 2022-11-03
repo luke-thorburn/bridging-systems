@@ -92,20 +92,9 @@
 	<main>
 
 		<aside>
-			<nav>
-				
-					<a href="/">Introduction</a>
-					<a href="/">Attention-Allocation Systems</a>
-						<a href="/" class="indent">Allocation Process</a>
-						<a href="/" class="indent">Learning Process</a>
-					<a href="/">Representation</a>
-					<a href="/">Quantification</a>
-						<a href="/" class="indent">Relation Metrics</a>
-						<a href="/" class="indent">Bridging Metrics</a>
-					<a href="/">Evaluation</a>
-					<a href="/">Discussion</a>
-				
-			</nav>
+			
+	<nav class="table-of-contents"></nav>
+
 		</aside>
 
 		
@@ -414,12 +403,18 @@
 		// 	root.style.setProperty('--header-height', document.querySelector('header').offsetHeight + "px");
 		// })
 
+		// Add 'active' class to the relevant link in the header.
 		let links = document.querySelectorAll('header nav a');
 		for (let k = 0; k < links.length; k++) {
 			if (links[k].href == window.location.href) {
 				links[k].classList.add('active');
 			}
 		}
+
+		// Specify top offset when scrolling using # links.
+		// window.addEventListener("hashchange", function () {
+		// 	window.scrollTo(window.scrollX, window.scrollY - 100);
+		// });
 
 	</script>
 

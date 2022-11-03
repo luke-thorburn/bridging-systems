@@ -69,6 +69,10 @@ permalink: /{{ post.data.slug }}/
 
 {% block body_class %}post{% endblock %}
 
+{% block outline %}
+	{{ post.templateContent | outline | safe }}
+{% endblock %}
+
 {% block content %}
 
 	{% if post.data.draft %}
