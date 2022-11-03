@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	
@@ -100,17 +100,22 @@
 		</a>
 
 		<div class="outlinks">
-			<a href="/">
+			<a href="https://github.com/luke-thorburn/bridging-systems" target="_blank">
 				<div class="icon"><i class="fa-brands fa-github"></i></div>
 			</a>			
 		</div>
 		
 		<nav>
-			<a href="/">Home</a>
-			<a href="/">Paper</a>
-			<a href="/" class="active">Metrics</a>
 			
-			<a href="/">Working Group</a>
+				<a href="/../">Home</a>
+			
+				<a href="/paper/">Paper</a>
+			
+				<a href="/metrics/">Metrics</a>
+			
+				<a href="/working-group/">Working Group</a>
+			
+			
 			
 		</nav>
 	</header>
@@ -298,14 +303,14 @@ That’s one small step for [a] man, one giant leap for mankind.</p>
 		
 			<section>
 				<h1>References</h1><div class="csl-bib-body">
-				<div id="bib-outofbox" data-csl-entry-id="outofbox" class="csl-entry">
-					<span class="title">Out-of-the-box vs. in-house tools: how do they affect data journalism in Australia?</span> <a href="https://doi.org/10.1177/1329878X20961569">[link]</a> <br />
-					de-Lima-Santos, M., Schapals, A. and Bruns, A., 2020. Media International Australia.
-				</div>
-			
 				<div id="bib-ausdata" data-csl-entry-id="ausdata" class="csl-entry">
 					<span class="title">The evolution of data journalism: A case study of Australia</span> <a href="https://doi.org/10.1080/1461670X.2018.1539343">[link]</a> <br />
 					Wright, S. and Doyle, K., 2019. Journalism Studies.
+				</div>
+			
+				<div id="bib-outofbox" data-csl-entry-id="outofbox" class="csl-entry">
+					<span class="title">Out-of-the-box vs. in-house tools: how do they affect data journalism in Australia?</span> <a href="https://doi.org/10.1177/1329878X20961569">[link]</a> <br />
+					Lima-Santos, M., Schapals, A. and Bruns, A., 2020. Media International Australia.
 				</div>
 			</div>
 			</section>
@@ -586,6 +591,14 @@ That’s one small step for [a] man, one giant leap for mankind.</p>
 		// 	let root = document.documentElement;
 		// 	root.style.setProperty('--header-height', document.querySelector('header').offsetHeight + "px");
 		// })
+
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == window.location.href) {
+				links[k].classList.add('active');
+			}
+		}
+
 	</script>
 
 </body>

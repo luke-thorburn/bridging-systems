@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	
@@ -6,8 +6,8 @@
 	
 	<title>
         
-            Bridging Systems
-        
+	Home | Bridging Systems
+
     </title>
 	
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,28 @@
 	<!-- JS -->
 	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 	
+
+	
+
+	
+
+	
+
+	<script type="text/javascript">
+		function loadCSS(path) { 
+			let file = document.createElement("link");
+			file.setAttribute("rel", "stylesheet");
+			file.setAttribute("type", "text/css");
+			file.setAttribute("href", path);
+			document.head.appendChild(file);
+		}
+
+		var graphs = [];
+	</script>
+
+	    
+
+
 
 	<!-- Styling -->
 	<script src="https://kit.fontawesome.com/52e6b7f776.js" crossorigin="anonymous"></script>
@@ -33,7 +55,7 @@
 
 </head>
 
-<body class="home">
+<body class="post">
 
 	<div>
 
@@ -47,17 +69,22 @@
 		</a>
 
 		<div class="outlinks">
-			<a href="/">
+			<a href="https://github.com/luke-thorburn/bridging-systems" target="_blank">
 				<div class="icon"><i class="fa-brands fa-github"></i></div>
 			</a>			
 		</div>
 		
 		<nav>
-			<a href="/">Home</a>
-			<a href="/">Paper</a>
-			<a href="/" class="active">Metrics</a>
 			
-			<a href="/">Working Group</a>
+				<a href="/../">Home</a>
+			
+				<a href="/paper/">Paper</a>
+			
+				<a href="/metrics/">Metrics</a>
+			
+				<a href="/working-group/">Working Group</a>
+			
+			
 			
 		</nav>
 	</header>
@@ -83,22 +110,296 @@
 
 		
 
-	<main class="home">
+	
+
+
+	<article>
+		
+		<h1>Home</h1>
+
+		<h2></h2>
+	
+		
+			<p>This is the home page.</p>
 
 		
 
-	</main>
+	</article>
+
+
+	
+	<div class="backmatter">
+
+		
+
+		<section>
+			
+		</section>
+
+		
+		
+		<section>
+			<h1>Reuse</h1>
+			<p>Distributed under a Creative Commons license (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>).</p>
+		</section>
+
+		<section>
+		<h1>Citation</h1>
+		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
+		<pre class="wrap">, "Home", Buckley's Chance, .</pre>
+		<p>Here is the BibTeX entry.</p>
+<pre>@article{..,
+  author = {},
+  title = {Home},
+  journal = {Buckley's Chance},
+  year = {},
+  url = {https://buckleys.pub/..}
+}</pre>
+		</section>
+
+	</div>
+	
 
 	<script>
-		if (window.netlifyIdentity) {
-			window.netlifyIdentity.on("init", user => {
-				if (!user) {
-					window.netlifyIdentity.on("login", () => {
-						document.location.href = "/admin/";
-					});
-				}
-			});
+		// UTILITY FUNCTIONS FOR COLLAPSIBLE SECTIONS
+
+		// document.querySelector('.collapsible')
+		// 	.addEventListener("click", function(ev) {
+		// 		ev.target.classList.toggle('collapsed');
+		// 	})
+
+		// UTILITY FUNCTIONS FOR CITATION POPUPS.
+
+		var mouseOverModal = false;
+
+		function create_modal_ref(el, id) {
+			
+			let bibref = document.querySelector(`#bib-${id}`),
+				text_column = document.querySelector('article > p').getBoundingClientRect();
+
+			let ref = document.createElement("div");
+			ref.setAttribute('class', 'hover-ref');
+			ref.setAttribute('style', `top: ${el.getBoundingClientRect().bottom + 10}px; left: ${text_column.left}px; width: ${text_column.right - text_column.left}px;`)
+			ref.setAttribute('onmouseenter', 'hovering()');
+			ref.setAttribute('onmouseleave', 'unhovering()');
+			ref.innerHTML = bibref.innerHTML;
+
+			document.querySelector('article').appendChild(ref); 
+
+			mouseOverModal = true;
 		}
+
+		function destroy_modal_ref() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+
+		function hovering() {
+			mouseOverModal = true;
+		}
+
+		function unhovering() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+	</script>
+
+	<script type="text/javascript">
+
+		var views = {};
+
+		function render(key, spec) {
+			
+			// Add default graph config.
+
+			let defaultConfig = {
+				axis: {
+					labelFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFontSize: 20,
+					titleFontWeight: 400,
+					titleColor: "#33691e"
+				}, 
+				legend: {
+					labelFont: "Roboto, Helvetica, Arial, sans-serif",
+					titleFont: "Roboto, Helvetica, Arial, sans-serif",
+					labelFontSize: 18,
+					labelColor: "#000000",
+					titleColor: "#33691e",
+					titlePadding: 15,
+					titleFontSize: 18,
+					symbolSize: 360,
+					labelSeparation: 10,
+					labelOffset: 10,
+					offset: 20,
+					titleFontWeight: 500,
+					labelFontWeight: 300,
+					layout: {
+						margin: 30
+					}
+				},
+				title: {
+					font: "Roboto, Helvetica, Arial, sans-serif",
+					subtitleFont: "Roboto, Helvetica, Arial, sans-serif",
+					fontSize: 22,
+					fontWeight: 500,
+					color: "#33691e",
+					subtitleFontSize: 20,
+					subtitleFontWeight: 300,
+					subtitlePadding: 12,
+					offset: 30
+				}
+			};
+			if (spec.hasOwnProperty('config')) {
+				spec.config.axis = { ...defaultConfig.axis, ...spec.config.axis };
+				spec.config.legend = { ...defaultConfig.legend, ...spec.config.legend };
+				spec.config.title = { ...defaultConfig.title, ...spec.config.title };
+			} else {
+				spec.config = defaultConfig;
+			}
+
+			// Create BC property if doesn't already exist.
+
+			if (!spec.hasOwnProperty('BC')) {
+				spec.BC = {};
+			}
+
+			// Specify renderer if not already specified.
+
+			if (!spec.BC.hasOwnProperty('renderer')) {
+				spec.BC.renderer = 'svg'; // Either 'svg' or 'canvas'.
+			}
+
+			// Define desired aspect ratio.
+
+			if (spec.hasOwnProperty('width') & spec.hasOwnProperty('height')) {
+				spec.BC.aspectRatio = spec.width / spec.height;
+			} else {
+				spec.BC.aspectRatio = 1.5;
+			}
+			delete spec.width;
+			delete spec.height;
+
+			// Define threshold width between two types of graph scaling.
+				// Above this width, the graph is re-rendered to fit the space available.
+				// (eg. text will stay its specified size)
+				// Below this width, the graph is simply scaled down to fit the space available.
+				// (eg. text will be smaller than the specified size)
+			if (!spec.BC.hasOwnProperty('minWidth')) {
+				spec.BC.minWidth = 800;
+			}
+
+			// Generate signals for specified toggles.
+
+			if (!spec.hasOwnProperty('signals')) {
+				spec.signals = [];
+			}
+			if (spec.BC.hasOwnProperty('toggle-groups')) {
+				for (let toggleGroup of spec.BC['toggle-groups']) {
+					for (let toggle of toggleGroup.toggles) {
+						spec.signals.push({
+							name: toggle.signalName,
+							update: `'${toggle.options.filter(d => d.default)[0].value}'`,
+							on: [{
+								events: {
+									source: `#select-${key}-${toggle.signalName}`,
+									type: "change"
+								},
+								update: "event.target.value"
+							}]
+						})
+					}
+				}
+			}
+
+			// Store reference to wrapper element.
+
+			spec.BC.container = document.querySelector(`#graph-container-${key}`);
+
+			// Create the view.
+
+			let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+			vegaEmbed(
+				`#graph-container-${key}`,
+				spec,
+				opt = {
+					renderer: spec.BC.renderer,
+					actions: false,
+					width: width,
+					height: width / spec.BC.aspectRatio
+				}
+			).then(function(result) {
+				
+				views[key] = result.view;
+
+				// Make responsive.
+
+				if (spec.BC.renderer === 'canvas') {
+					
+					spec.BC.resize = () => {
+						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+						views[key]
+							.width(width)
+							.height(width / spec.BC.aspectRatio)
+							.run();
+					};
+					window.addEventListener('resize', spec.BC.resize);
+				
+				} else {
+					
+					function removeWidthHeightAttributes() {
+						// Remove width/height attributes of Vega SVG and let viewBox handle the responsive behaviour.
+						let viewDom = spec.BC.container.firstElementChild;
+						viewDom.removeAttribute('width');
+						viewDom.removeAttribute('height');
+					}
+
+					spec.BC.resize = () => {
+						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
+						views[key]
+							.width(width)
+							.height(width / spec.BC.aspectRatio)
+							.runAsync()
+							.then(vw => {
+								removeWidthHeightAttributes();
+							});
+						
+					};
+					window.addEventListener('resize', spec.BC.resize);
+
+					removeWidthHeightAttributes();
+					
+				}
+
+			}).catch(console.error);
+
+			return views[key];
+
+		}
+  
+		for (let key of graphs) {
+		
+			fetch('/posts/../graph-' + key + '.json')
+				.then(result => result.json())
+				.then(spec => render(key, spec))
+				.catch(err => console.error(err));
+
+		}
+
 	</script>
 
 
@@ -112,6 +413,14 @@
 		// 	let root = document.documentElement;
 		// 	root.style.setProperty('--header-height', document.querySelector('header').offsetHeight + "px");
 		// })
+
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == window.location.href) {
+				links[k].classList.add('active');
+			}
+		}
+
 	</script>
 
 </body>

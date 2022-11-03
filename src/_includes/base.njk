@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	
@@ -51,17 +51,18 @@
 		</a>
 
 		<div class="outlinks">
-			<a href="/">
+			<a href="https://github.com/luke-thorburn/bridging-systems" target="_blank">
 				<div class="icon"><i class="fa-brands fa-github"></i></div>
 			</a>			
 		</div>
 		
 		<nav>
-			<a href="/">Home</a>
-			<a href="/">Paper</a>
-			<a href="/" class="active">Metrics</a>
-			{# <a href="/">Examples</a> #}
-			<a href="/">Working Group</a>
+			{% for p in collections.post | removeHiddenPostsAndPages %}
+				<a href="/{{ p.data.slug }}/">{{ p.data.title }}</a>
+			{% endfor %}
+			{# <a href="/paper/">Paper</a>
+			<a href="/metrics/">Metrics</a>
+			<a href="/working-group/">Working Group</a> #}
 			{# <div>
 				<a href="https://twitter.com/BuckleysPub" class="icon"><i class="fab fa-twitter"></i></a>
 				<a href="https://github.com/buckleys-chance" class="icon"><i class="fab fa-github"></i></a>
@@ -100,6 +101,14 @@
 		// 	let root = document.documentElement;
 		// 	root.style.setProperty('--header-height', document.querySelector('header').offsetHeight + "px");
 		// })
+
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == window.location.href) {
+				links[k].classList.add('active');
+			}
+		}
+
 	</script>
 
 </body>

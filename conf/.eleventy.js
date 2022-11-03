@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
 	const fs = require('fs');
 	eleventyConfig.addFilter("get_graph_spec", function(name, slug) {
 
-		let spec = JSON.parse(fs.readFileSync(`../src/posts/${slug}/graph-${name}.json`).toString()),
+		let spec = JSON.parse(fs.readFileSync(`../src/pages/${slug}/graph-${name}.json`).toString()),
 			BC = {};
 
 		if (spec.hasOwnProperty('BC')) {
@@ -20,13 +20,13 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addShortcode("import_content", function(name, slug) {
 
-		let html = fs.readFileSync(`../src/posts/${slug}/${name}.html`).toString();
+		let html = fs.readFileSync(`../src/pages/${slug}/${name}.html`).toString();
 
 		// Load CSS, if it exists.
 		try {
-			if (fs.existsSync(`../src/posts/${slug}/${name}.css`)) {
+			if (fs.existsSync(`../src/pages/${slug}/${name}.css`)) {
 				html += `<script type="text/javascript">
-					loadCSS("/posts/${slug}/${name}.css");
+					loadCSS("/pages/${slug}/${name}.css");
 				</script>`;
 			}
 		} catch(error) {
@@ -35,8 +35,8 @@ module.exports = function(eleventyConfig) {
 
 		// Load javascript, if it exists.
 		try {
-			if (fs.existsSync(`../src/posts/${slug}/${name}.js`)) {
-				html += `<script src="/posts/${ slug }/${ name }.js"></script>`
+			if (fs.existsSync(`../src/pages/${slug}/${name}.js`)) {
+				html += `<script src="/pages/${ slug }/${ name }.js"></script>`
 			}
 		} catch(error) {
 			console.error(error);
