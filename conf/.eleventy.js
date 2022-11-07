@@ -287,7 +287,7 @@ module.exports = function(eleventyConfig) {
 	
 	eleventyConfig.addFilter("bibliography", function(referenceFile) {
 		
-		let bibtex = fs.readFileSync('../src/_data/references/' + referenceFile).toString();
+		let bibtex = fs.readFileSync('src/_data/references/' + referenceFile).toString();
 
 		let citations = new Cite(bibtex),
 			refs = citations.format('data'),
@@ -542,7 +542,7 @@ module.exports = function(eleventyConfig) {
 	return {
 
 		dir: {
-			input: "../src",
+			input: "src",
 			output: "../docs",
 			includes: "_includes"
 		},
