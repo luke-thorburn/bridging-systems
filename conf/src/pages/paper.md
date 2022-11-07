@@ -29,7 +29,7 @@ acknowledgements: >-
   Aviv Ovadya was supported in part by a Technology and Public Purpose Fellowship at the Belfer Center for Science and International Affairs, Harvard Kennedy School.
 
 
-  Luke Thorburn was supported by UK Research and Innovation [grant number EP/S023356/1], in the UKRI Centre for Doctoral Training in Safe and Trusted Artificial Intelligence ([safeandtrustedai.org](https://safeandtrustedai.org)), King's College London.
+  Luke Thorburn was supported by UK Research and Innovation \[grant number EP/S023356/1], in the UKRI Centre for Doctoral Training in Safe and Trusted Artificial Intelligence ([safeandtrustedai.org](https://safeandtrustedai.org)), King's College London.
 description: Open Problems for Countering Destructive Divisiveness in Ranking,
   Recommenders, and Governance
 ---
