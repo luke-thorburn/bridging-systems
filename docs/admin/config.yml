@@ -13,13 +13,15 @@ collections:
           - {label: "Tags", name: "tags", widget: "hidden", default: "post"}
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Slug", name: "slug", widget: "string" }
+          - { label: "Menu Title", name: "menuTitle", widget: "string" }
           - { label: "Menu Position", name: "position", widget: "number" }
           - { label: "Hidden", name: "hidden", widget: "boolean", default: true, required: false }
           - { label: "Authors", name: "authors", widget: "list", required: false, fields: [
               { label: "Name", name: "name", widget: "object", summary: "{{fields.first}} {{fields.last}}", fields: [
                 { label: "First", name: "first", widget: "string"},
                 { label: "Last", name: "last", widget: "string"},
-                { label: "URL", name: "url", widget: "string"}
+                { label: "URL", name: "url", widget: "string", required: false}
               ] }
             ] }
           - { label: "Body", name: "body", widget: "markdown", modes: ["raw"] }
+          - { label: "Acknowledgements", name: "acknowledgements", widget: "text", required: false }

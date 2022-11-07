@@ -4,6 +4,7 @@ templateEngineOverride: njk
 tags: post
 slug: working-group
 title: Working Group
+menuTitle: Working Group
 position: 4
 ---
 

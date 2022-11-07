@@ -2,7 +2,7 @@
 permalink: false
 templateEngineOverride: njk
 tags: post
-title: Paper
+menuTitle: Paper
 slug: paper
 position: 2
 authors:
@@ -14,7 +14,7 @@ authors:
       first: Luke
       last: Thorburn
       url: https://lukethorburn.com/
-longTitle: Bridging Systems
+title: Bridging Systems
 description: Open Problems for Countering Destructive Divisiveness in Ranking,
   Recommenders, and Governance
 ---

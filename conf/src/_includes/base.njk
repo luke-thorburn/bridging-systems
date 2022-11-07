@@ -58,7 +58,7 @@
 		
 		<nav>
 			{% for p in collections.post | removeHiddenPostsAndPages | sortByPosition %}
-				<a href="/{{ p.data.slug }}/">{{ p.data.title }}</a>
+				<a href="/{{ p.data.slug }}/">{{ p.data.menuTitle }}</a>
 			{% endfor %}
 			{# <a href="/paper/">Paper</a>
 			<a href="/metrics/">Metrics</a>

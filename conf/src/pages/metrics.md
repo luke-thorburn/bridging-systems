@@ -3,6 +3,7 @@ permalink: false
 templateEngineOverride: njk
 tags: post
 slug: metrics
+menuTitle: Metrics
 title: Metrics
 position: 3
 ---

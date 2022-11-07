@@ -9,7 +9,7 @@ permalink: /{{ post.data.slug }}/
 {% extends 'base.njk' %}
 
 {% block title %}
-	{{ post.data.title }} | Bridging Systems
+	{{ post.data.menuTitle }} | Bridging Systems
 {% endblock %}
 
 {% block head %}
@@ -84,7 +84,7 @@ permalink: /{{ post.data.slug }}/
 
 	<article>
 		
-		<h1 class="title">{% if post.data.longTitle %}{{ post.data.longTitle }}{% else %}{{ post.data.title }}{% endif %}</h1>
+		<h1 class="title">{{ post.data.title }}</h1>
 
 		<h2 class="description">{{ post.data.description | safe }}</h2>
 	
@@ -122,6 +122,7 @@ permalink: /{{ post.data.slug }}/
 			<p>Distributed under a Creative Commons license (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>).</p>
 		</section>
 
+		{% if post.data.authors %}
 		<section>
 		<h1>Citation</h1>
 		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
@@ -132,9 +133,10 @@ permalink: /{{ post.data.slug }}/
   title = { {{- post.data.title -}} },
   journal = {Bridging Systems},
   year = { {{- post.data.date | get_year -}} },
-  url = {https://buckleys.pub/{{ post.data.slug }}}
+  url = {https://bridging.systems/{{ post.data.slug }}/}
 }</pre>
 		</section>
+	{% endif %}
 
 	</div>
 	{% endif %}
