@@ -24,4 +24,4 @@ collections:
               ] }
             ] }
           - { label: "Body", name: "body", widget: "markdown", modes: ["raw"] }
-          - { label: "Acknowledgements", name: "acknowledgements", widget: "text", required: false }
+          - { label: "Acknowledgements", name: "acknowledgements", widget: "markdown", required: false }
