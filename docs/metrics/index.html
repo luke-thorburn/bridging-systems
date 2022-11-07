@@ -14,6 +14,19 @@
 
 	<!-- JS -->
 	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+	<script>
+		window.MathJax = {
+			tex: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']],
+				displayMath: [['$$', '$$'], ['\\[', '\\]']]
+			},
+			svg: {
+				fontCache: 'global'
+			}
+		};
+	</script>
+	<script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+	<script src="/js/lib/neverland.js"></script>
 	
 
 	
@@ -111,11 +124,300 @@
 		<h2 class="description"></h2>
 	
 		
-			<p>This is the metrics page.</p>
+			<p>This page contains a comprehensive review of metrics that have been proposed to quantify the degree of division or “polarization” in the public sphere.</p>
+<ul>
+<li>
+<p>The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).</p>
+</li>
+<li>
+<p>Graph-based models can be converted into space-based models using graph embeddings. Space-based models can be converted into graph-based models using techniques from topological data analysis.</p>
+</li>
+<li>
+<p>The semantics and provenance of the underlying model matter just as much as the metrics that are applied “on top”.</p>
+</li>
+<li>
+<p>Not yet making any strong claims about which are most valid. Many of these should not be used for optimization.</p>
+</li>
+</ul>
 <h1 id="table-of-metrics">Table of Metrics</h1>
+<div class="outer-wrap" id="table-of-metrics">
+	<button onclick="document.querySelector('html').classList.toggle('fullscreen')">
+		<span class="expand"><i class="fas fa-expand-wide"></i>&ensp;View Fullscreen</span>
+		<span class="compress"><i class="fas fa-compress-wide"></i>&ensp;Exit</span>
+	</button>
+	<div class="inner-wrap"></div>
+</div>
 <h1 id="notation">Notation</h1>
 <h1 id="future-work">Future Work</h1>
+<script>
 
+	document.onkeydown = function(evt) {
+		evt = evt || window.event;
+		let isEscape = false;
+		if ("key" in evt) {
+			isEscape = (evt.key === "Escape" || evt.key === "Esc");
+		}
+		if (isEscape) {
+			document.querySelector('html').classList.toggle('fullscreen');
+		}
+	};
+
+	const {neverland: Component, render, html, useState, useEffect} = window.neverland;
+
+	let columnSpecs = [
+		{
+			key: 'metric',
+			label: 'Metric',
+			minWidth: 200
+		},
+		{
+			key: 'concept',
+			label: 'Concept',
+			minWidth: 200,
+			filter: true,
+			values: [],
+			filters: {}
+		},
+		{
+			key: 'modelType',
+			label: 'Model Type',
+			minWidth: 250,
+			type: 'data',
+			filter: true,
+			values: [
+				'graph',
+				'space'
+			],
+			filters: {},
+			transform: value => {
+				return value == "graph"
+						? html`<i class="fal fa-chart-network"></i> GRAPH`
+						: (value == "space" 
+							? html`<i class="fal fa-chart-scatter"></i> SPACE`
+							: value
+				  		  )
+			}
+		},
+		{
+			key: 'scope',
+			label: 'Scope',
+			minWidth: 200,
+			type: 'data',
+			filter: true,
+			values: [
+				'individual',
+				'group',
+				'population'
+			],
+			filters: {},
+		},
+		{
+			key: 'needsGroups',
+			label: 'Needs Groups',
+			minWidth: 250,
+			filter: true,
+			values: [],
+			filters: {},
+			transform: value => {
+				return value == 'Yes'
+					? html`<i class="fas fa-check"></i>`
+					: html`<i class="fas fa-times"></i>`
+			}
+		},
+		{
+			key: 'intuition',
+			label: 'Intuition',
+			minWidth: 400
+		},
+		{
+			key: 'formula',
+			label: 'Formula',
+			transform: value => {
+				return html`<span>${value}</span>`;
+			}
+		},
+		{
+			key: 'limitations',
+			label: 'Limitations',
+			minWidth: 600
+		},
+		
+	]
+
+	const Row = Component(function(m, columns, setColumns) {
+
+		return html.for(m)`<tr onclick="${() => {
+			setColumns(prevColumns => {
+				let columns = [...prevColumns];
+				columns.forEach(c => {
+					c.showFilters = false;
+				})
+				return columns;
+			})
+		}}">
+
+			${columns.map((c, idx) => {
+				return html`
+					<td class="${c.type ? c.type : ''}">
+						${c.transform
+							? c.transform(m[c.key])
+							: m[c.key]
+						}
+					</td>
+				`;
+			})}
+			
+		</tr>`;
+
+	})
+
+	const Table = Component(function() {
+
+		let [metrics, setMetrics] = useState([]);
+		let [sort, setSort] = useState({
+			key: false,
+			direction: -1
+		});
+
+		useEffect(() => {
+
+			fetch('/data/metrics.json')
+				.then(response => response.json())
+				.then(data => {
+					setMetrics(data);
+				})
+
+		}, []);
+
+		let [columns, setColumns] = useState(columnSpecs);
+
+		useEffect(() => {
+
+			setColumns(prevColumns => {
+				let columns = [...prevColumns];
+				columns = columns.map(c => {
+					if (c.filter) {
+						c.values = Array(...(new Set(metrics.map(m => m[c.key])))).filter(d => Boolean(d)).sort();
+						c.filters = {};
+						for (let v of c.values) {
+							c.filters[v] = true;
+						}
+					}
+					return c;
+				})
+				return columns;
+			})
+
+		}, [JSON.stringify(metrics)])
+
+		useEffect(() => {
+			if (MathJax.typeset) {
+				MathJax.typeset();
+			}
+		}, [JSON.stringify(columns), sort.key, sort.direction])
+
+		return html`<table class="metrics-table">
+
+			<thead>
+				<tr>
+					${columns.map(c => {
+						return html`<th style="${c.minWidth ? `min-width: ${c.minWidth}px;` : ''}">
+							<div>
+								<div class="label">${c.label}</div>
+								<div class="actions">
+									<button
+										onclick="${() => {
+											setSort(prevSort => {
+												let sort = {...prevSort};
+												sort.direction = (sort.key == c.key) ? -1*sort.direction : 1;
+												sort.key = c.key;
+												return sort;
+											})
+										}}"
+										class="${sort.key == c.key ? 'active' : ''}"
+										>
+											${sort.key != c.key
+												? html`<i class="fas fa-sort"></i>`
+												: (sort.direction == 1
+													? html`<i class="fad fa-sort-up"></i>`
+													: html`<i class="fad fa-sort-down"></i>`)}
+										</button>
+									
+									${c.filter
+										? html`<button
+											onclick="${() => {
+												setColumns(prevColumns => {
+													let columns = [...prevColumns];
+													columns = columns.map(d => {
+														if (d.key == c.key) {
+															d.showFilters = !Boolean(d.showFilters);
+														}
+														return d;
+													})
+													return columns;
+												})
+											}}"
+											class="${(c.showFilters | Object.values(c.filters).filter(d => !d).length > 0) ? 'active' : ''}"
+											><i class="fas fa-filter"></i></button>` : ''}
+									
+									${c.filter ? html`<div class="filters ${c.showFilters ? '' : 'hide'}">
+										${c.values.map(d => html`<div>
+											<input
+												type="checkbox"
+												id="${c.key}-${d}"
+												name="${c.key}-${d}"
+												checked="${c.filters[d]}"
+												onchange="${() => {
+													setColumns(prevColumns => {
+														let columns = [...prevColumns];
+														columns = columns.map(col => {
+															if (col.key == c.key) {
+																col.filters[d] = !col.filters[d];
+															}
+															return col;
+														})
+														return columns;
+													})
+												}}">
+											<label for="${c.key}-${d}">${d}</label>
+										</div>`)}
+									</div>` : ''}
+								
+								</div>
+							</div>
+						</th>`;
+					})}
+				</tr>
+			</thead>
+
+			<tbody>
+
+				${JSON.parse(JSON.stringify(metrics))
+					.filter(m => {
+						let included = true;
+						columns.filter(c => c.filter).forEach(c => {
+							included = included & c.filters[m[c.key]];
+						})
+						return included;
+					})
+					.sort((a, b) => {
+						if (sort.key) {
+							return sort.direction * ( 2*Number(a[sort.key] > b[sort.key]) - 1 );
+						} else {
+							return 1;
+						}
+					})
+					.map(m => Row(m, columns, setColumns))}
+
+			</tbody>
+
+		</table>`;
+
+	});
+
+	render(document.querySelector('.inner-wrap'), html`${Table()}`);
+
+</script>
 		
 
 	</article>
@@ -200,189 +502,7 @@
 		}
 	</script>
 
-	<script type="text/javascript">
-
-		var views = {};
-
-		function render(key, spec) {
-			
-			// Add default graph config.
-
-			let defaultConfig = {
-				axis: {
-					labelFont: "Roboto, Helvetica, Arial, sans-serif",
-					titleFont: "Roboto, Helvetica, Arial, sans-serif",
-					titleFontSize: 20,
-					titleFontWeight: 400,
-					titleColor: "#33691e"
-				}, 
-				legend: {
-					labelFont: "Roboto, Helvetica, Arial, sans-serif",
-					titleFont: "Roboto, Helvetica, Arial, sans-serif",
-					labelFontSize: 18,
-					labelColor: "#000000",
-					titleColor: "#33691e",
-					titlePadding: 15,
-					titleFontSize: 18,
-					symbolSize: 360,
-					labelSeparation: 10,
-					labelOffset: 10,
-					offset: 20,
-					titleFontWeight: 500,
-					labelFontWeight: 300,
-					layout: {
-						margin: 30
-					}
-				},
-				title: {
-					font: "Roboto, Helvetica, Arial, sans-serif",
-					subtitleFont: "Roboto, Helvetica, Arial, sans-serif",
-					fontSize: 22,
-					fontWeight: 500,
-					color: "#33691e",
-					subtitleFontSize: 20,
-					subtitleFontWeight: 300,
-					subtitlePadding: 12,
-					offset: 30
-				}
-			};
-			if (spec.hasOwnProperty('config')) {
-				spec.config.axis = { ...defaultConfig.axis, ...spec.config.axis };
-				spec.config.legend = { ...defaultConfig.legend, ...spec.config.legend };
-				spec.config.title = { ...defaultConfig.title, ...spec.config.title };
-			} else {
-				spec.config = defaultConfig;
-			}
-
-			// Create BC property if doesn't already exist.
-
-			if (!spec.hasOwnProperty('BC')) {
-				spec.BC = {};
-			}
-
-			// Specify renderer if not already specified.
-
-			if (!spec.BC.hasOwnProperty('renderer')) {
-				spec.BC.renderer = 'svg'; // Either 'svg' or 'canvas'.
-			}
-
-			// Define desired aspect ratio.
-
-			if (spec.hasOwnProperty('width') & spec.hasOwnProperty('height')) {
-				spec.BC.aspectRatio = spec.width / spec.height;
-			} else {
-				spec.BC.aspectRatio = 1.5;
-			}
-			delete spec.width;
-			delete spec.height;
-
-			// Define threshold width between two types of graph scaling.
-				// Above this width, the graph is re-rendered to fit the space available.
-				// (eg. text will stay its specified size)
-				// Below this width, the graph is simply scaled down to fit the space available.
-				// (eg. text will be smaller than the specified size)
-			if (!spec.BC.hasOwnProperty('minWidth')) {
-				spec.BC.minWidth = 800;
-			}
-
-			// Generate signals for specified toggles.
-
-			if (!spec.hasOwnProperty('signals')) {
-				spec.signals = [];
-			}
-			if (spec.BC.hasOwnProperty('toggle-groups')) {
-				for (let toggleGroup of spec.BC['toggle-groups']) {
-					for (let toggle of toggleGroup.toggles) {
-						spec.signals.push({
-							name: toggle.signalName,
-							update: `'${toggle.options.filter(d => d.default)[0].value}'`,
-							on: [{
-								events: {
-									source: `#select-${key}-${toggle.signalName}`,
-									type: "change"
-								},
-								update: "event.target.value"
-							}]
-						})
-					}
-				}
-			}
-
-			// Store reference to wrapper element.
-
-			spec.BC.container = document.querySelector(`#graph-container-${key}`);
-
-			// Create the view.
-
-			let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
-			vegaEmbed(
-				`#graph-container-${key}`,
-				spec,
-				opt = {
-					renderer: spec.BC.renderer,
-					actions: false,
-					width: width,
-					height: width / spec.BC.aspectRatio
-				}
-			).then(function(result) {
-				
-				views[key] = result.view;
-
-				// Make responsive.
-
-				if (spec.BC.renderer === 'canvas') {
-					
-					spec.BC.resize = () => {
-						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
-						views[key]
-							.width(width)
-							.height(width / spec.BC.aspectRatio)
-							.run();
-					};
-					window.addEventListener('resize', spec.BC.resize);
-				
-				} else {
-					
-					function removeWidthHeightAttributes() {
-						// Remove width/height attributes of Vega SVG and let viewBox handle the responsive behaviour.
-						let viewDom = spec.BC.container.firstElementChild;
-						viewDom.removeAttribute('width');
-						viewDom.removeAttribute('height');
-					}
-
-					spec.BC.resize = () => {
-						let width = Math.max(spec.BC.container.offsetWidth, spec.BC.minWidth);
-						views[key]
-							.width(width)
-							.height(width / spec.BC.aspectRatio)
-							.runAsync()
-							.then(vw => {
-								removeWidthHeightAttributes();
-							});
-						
-					};
-					window.addEventListener('resize', spec.BC.resize);
-
-					removeWidthHeightAttributes();
-					
-				}
-
-			}).catch(console.error);
-
-			return views[key];
-
-		}
-  
-		for (let key of graphs) {
-		
-			fetch('/posts/metrics/graph-' + key + '.json')
-				.then(result => result.json())
-				.then(spec => render(key, spec))
-				.catch(err => console.error(err));
-
-		}
-
-	</script>
+	
 
 
 	

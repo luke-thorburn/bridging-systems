@@ -142,7 +142,7 @@ header {
 
 	position: sticky;
 	top: 0;
-	z-index: 99;
+	z-index: 999;
 
 	display: grid;
 	grid-template-columns: auto 1fr auto;
@@ -1120,3 +1120,279 @@ article {
 // ============================================================================== //
 // ============================================================================== //
 // ============================================================================== //
+
+// METRICS TABLE
+
+.outer-wrap {
+	position: relative;
+	width: calc(100% - 40px);
+	height: 400px;
+	overflow: hidden;
+	margin: 3rem 0;
+	border: 1px solid black;
+}
+
+.inner-wrap {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: #f6f6f6;
+}
+
+.metrics-table {
+	/*display: grid;*/
+	/*grid-template-columns: repeat(6, auto);*/
+
+	font-family: 'IBM Plex Sans', sans-serif;	
+	background-color: #f6f6f6;
+	border-collapse: collapse;
+
+	text-align: left;
+
+	min-width: 100%;
+	margin: 0;
+
+	/*position: fixed;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	margin: 0;*/
+}
+
+.inner-wrap::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: transparent;
+}
+.inner-wrap::-webkit-scrollbar-track {
+	background-color: transparent;
+	/*border-radius: 10px;*/
+	margin: 0;
+}
+.inner-wrap::-webkit-scrollbar-thumb {
+	background-color: $c1-dark;
+	/*border-radius: 10px;*/
+}
+
+.metrics-table th {
+	position: sticky;
+	top: 0;
+	background-color: #fff;
+	z-index: 99;
+	/*border-bottom: 1px solid #000;*/
+	font-size: .9rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 0;
+	cursor: default;
+}
+
+.metrics-table th div {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.metrics-table th .label {
+	padding: 10px 0 10px 1.5rem;
+}
+
+.metrics-table th .actions {
+	/*margin-left: 10px;*/
+}
+
+.metrics-table th .actions button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	border-radius: 0;
+	color: #eee;
+	/*cursor: pointer;*/
+	padding: 10px 5px;
+	margin: 0;
+}
+
+.metrics-table th .actions button:first-of-type {
+	padding-left: 10px;
+}
+.metrics-table th .actions button:last-of-type {
+	padding-right: 1.5rem;
+}
+
+.metrics-table th:hover .actions button {
+	color: #cdcdcd;
+}
+.metrics-table th .actions button:hover {
+	color: #000;
+}
+.metrics-table th .actions button.active {
+	color: #000;
+}
+
+.metrics-table th .filters {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	align-items: flex-start;
+	top: calc(100% - 1px);
+	left: -1px;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-top: none;
+	padding: 0 1.5rem 10px 1.5rem;
+	font-weight: 400;
+	text-transform: none;
+	z-index: 97 !important;
+	min-width: calc(100% + 1px);
+	letter-spacing: 0;
+}
+
+.metrics-table th .filters.hide {
+	display: none;
+}
+
+.metrics-table th .filters > div {
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.metrics-table th .filters > div input {
+	margin: 6px 10px 10px 0;
+}
+.metrics-table th .filters > div label {
+	
+}
+
+.metrics-table th::after {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: #000;
+	content: ' ';
+}
+
+.metrics-table tr {
+	border: none;
+}
+
+.metrics-table td {
+	/*display: grid;*/
+	vertical-align: center;
+	padding: 10px 1.5rem;
+	/*justify-content: center;*/
+}
+
+.metrics-table td.data {
+	font-family: monospace;
+}
+.metrics-table td.text {
+	font-family: var(--serif-stack);
+}
+
+.metrics-table td:first-child, .metrics-table th:first-child {
+	position: sticky;
+	left: 0;
+	/*border-right: 1px solid #000;*/
+}
+.metrics-table td:first-child {
+	z-index: 100;
+	font-weight: 600;
+	/*font-size: 1.2rem;*/
+}
+.metrics-table th:first-child {
+	z-index: 101;
+}
+.metrics-table td:first-child::before, .metrics-table th:first-child::before {
+	content: ' ';
+	position: absolute;
+	right: 0;
+	width: 1px;
+	top: 0;
+	height: 100%;
+	background-color: #000;
+}
+
+
+.metrics-table td span {
+	width: fit-content;
+	display: inline-block;
+}
+
+.metrics-table tr:nth-of-type(2n+1) td {
+	background-color: #f6f6f6;
+}
+
+.metrics-table tr:nth-of-type(2n) td {
+	background-color: #fbfbfb
+}
+
+.metrics-table tr:hover td {
+	background-color: #f0f0f0;
+	/*border-top: 1px solid blue;
+	border-bottom: 1px solid blue;*/
+}
+
+.metrics-table tr:hover td:hover {
+	background-color: #eaeaea;
+}
+
+.outer-wrap > button {
+	position: absolute;
+	bottom: 1.5rem;
+	right: 1.5rem;
+	z-index: 101;
+
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	margin: 0;
+	font-size: .9rem;
+	background-color: $c1-dark;
+	color: #fff;
+	padding: 5px 10px;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+.outer-wrap > button .expand {
+	display: inline-block;
+}
+.outer-wrap > button .compress {
+	display: none;
+}
+
+html.fullscreen {
+	overflow: hidden;
+}
+
+html.fullscreen .outer-wrap {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	border: none;
+	z-index: 1000;
+}
+
+html.fullscreen .outer-wrap > button {
+	position: fixed;
+	top: unset;
+	bottom: 1.5rem;
+	right: 1.5rem;
+}
+
+html.fullscreen .outer-wrap > button .expand {
+	display: none;
+}
+html.fullscreen .outer-wrap > button .compress {
+	display: inline-block;
+}

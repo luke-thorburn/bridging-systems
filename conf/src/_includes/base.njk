@@ -14,6 +14,19 @@
 
 	<!-- JS -->
 	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+	<script>
+		window.MathJax = {
+			tex: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']],
+				displayMath: [['$$', '$$'], ['\\[', '\\]']]
+			},
+			svg: {
+				fontCache: 'global'
+			}
+		};
+	</script>
+	<script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+	<script src="/js/lib/neverland.js"></script>
 	{% block head %}{% endblock %}
 
 	<!-- Styling -->
