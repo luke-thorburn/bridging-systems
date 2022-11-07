@@ -1,12 +1,12 @@
 backend:
   name: git-gateway
   branch: main
-media_folder: "src/img"
+media_folder: "conf/src/img"
 public_folder: "/img"
 collections:
     - name: "page"
       label: "Page"
-      folder: "src/pages"
+      folder: "conf/src/pages"
       fields:
           - {label: "Permalink", name: "permalink", widget: "hidden", default: false}
           - {label: "Template Engine Override", name: "templateEngineOverride", widget: "hidden", default: "njk"}
