@@ -9,4 +9,4 @@ hidden: false
 longTitle: What is a bridging system?
 ---
 
-This is the home page. Tada.
+This is the home page.
