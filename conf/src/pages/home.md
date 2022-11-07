@@ -2,12 +2,11 @@
 permalink: false
 templateEngineOverride: njk
 tags: post
-slug: ..
 title: Home
-longTitle: What is a bridging system?
+slug: ..
 position: 1
+hidden: false
+longTitle: What is a bridging system?
 ---
 
-This is the home page.
-
----
+This is the home page. Tada.
