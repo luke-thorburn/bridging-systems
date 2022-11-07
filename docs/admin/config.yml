@@ -14,5 +14,8 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Slug", name: "slug", widget: "string" }
           - { label: "Menu Position", name: "position", widget: "number" }
-          - { label: "Hidden", name: "hidden", widget: "boolean", default: true }          
+          - { label: "Hidden", name: "hidden", widget: "boolean", default: true, required: false }
+          - { label: "Authors", name: "authors", widget: "list", required: false, fields: [
+              { label: "Name", name: "name", widget: "string" }
+            ] }
           - { label: "Body", name: "body", widget: "markdown", modes: ["raw"] }

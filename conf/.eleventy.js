@@ -20,8 +20,8 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addFilter("sortByPosition", function(collection) {
 
 		collection = collection.sort((a, b) => {
-			return a.position - b.position;
-		})
+			return Number(a.data.position) - Number(b.data.position);
+		});
 
 		return collection;
 
