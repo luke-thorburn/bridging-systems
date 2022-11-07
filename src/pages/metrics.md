@@ -4,6 +4,7 @@ templateEngineOverride: njk
 tags: post
 slug: metrics
 title: Metrics
+position: 3
 ---
 
 This is the metrics page.

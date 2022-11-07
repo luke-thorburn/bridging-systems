@@ -118,19 +118,19 @@ permalink: /{{ post.data.slug }}/
 		{% endif %}
 		
 		<section>
-			<h1>Reuse</h1>
+			<h1>License</h1>
 			<p>Distributed under a Creative Commons license (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>).</p>
 		</section>
 
 		<section>
 		<h1>Citation</h1>
 		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
-		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Buckley's Chance, {{ post.data.date | get_year }}.</pre>
+		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Bridging Systems, {{ post.data.date | get_year }}.</pre>
 		<p>Here is the BibTeX entry.</p>
 <pre>@article{ {{- post.data.slug }}{{ post.data.date | get_year }},
   author = { {{- post.data.authors | bibtex_authors -}} },
   title = { {{- post.data.title -}} },
-  journal = {Buckley's Chance},
+  journal = {Bridging Systems},
   year = { {{- post.data.date | get_year -}} },
   url = {https://buckleys.pub/{{ post.data.slug }}}
 }</pre>

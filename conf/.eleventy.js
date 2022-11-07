@@ -16,6 +16,17 @@ module.exports = function(eleventyConfig) {
 
 	})
 
+	// Add filter to sort by position.
+	eleventyConfig.addFilter("sortByPosition", function(collection) {
+
+		collection = collection.sort((a, b) => {
+			return a.position - b.position;
+		})
+
+		return collection;
+
+	})
+
 	// Add shortcode to import custom elements (d3 graphs, tables etc.).
 
 	eleventyConfig.addShortcode("import_content", function(name, slug) {

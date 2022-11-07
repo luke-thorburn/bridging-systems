@@ -8,5 +8,11 @@ collections:
       label: "Page"
       folder: "src/pages"
       fields:
+          - {label: "Permalink", name: "permalink", widget: "hidden", default: false}
+          - {label: "Template Engine Override", name: "templateEngineOverride", widget: "hidden", default: "njk"}
+          - {label: "Tags", name: "tags", widget: "hidden", default: "post"}
           - { label: "Title", name: "title", widget: "string" }
+          - { label: "Slug", name: "slug", widget: "string" }
+          - { label: "Menu Position", name: "position", widget: "number" }
+          - { label: "Hidden", name: "hidden", widget: "boolean", default: true }          
           - { label: "Body", name: "body", widget: "markdown", modes: ["raw"] }
