@@ -110,11 +110,6 @@ module.exports = function(eleventyConfig) {
 			</div>`;
 		}
 
-		// let downloadLink = '';
-		// if (BC.hasOwnProperty('data-download')) {
-		// 	downloadLink = `<a href="${BC['data-download'].href}" class="download-link"><strong>Download data</strong> (${BC['data-download'].size})</a>`
-		// }
-
 		if (toggle_specs.length > 0) {
 			toggles = `<div class="toggles">${toggles}</div>`;
 		}

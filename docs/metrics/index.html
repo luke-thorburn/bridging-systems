@@ -33,20 +33,6 @@
 
 	
 
-	
-
-	<script type="text/javascript">
-		function loadCSS(path) { 
-			let file = document.createElement("link");
-			file.setAttribute("rel", "stylesheet");
-			file.setAttribute("type", "text/css");
-			file.setAttribute("href", path);
-			document.head.appendChild(file);
-		}
-
-		var graphs = [];
-	</script>
-
 	    
 
 
@@ -60,11 +46,6 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-
-	<!-- ANALYTICS -->
-
-	<!-- (see just before the </body> tag) -->
 
 </head>
 
@@ -99,8 +80,6 @@
 			
 				<a href="/working-group/">Working Group</a>
 			
-			
-			
 		</nav>
 	</header>
 
@@ -126,18 +105,10 @@
 		
 			<p>This page contains a comprehensive review of metrics that have been proposed to quantify the degree of division or “polarization” in the public sphere.</p>
 <ul>
-<li>
-<p>The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).</p>
-</li>
-<li>
-<p>Graph-based models can be converted into space-based models using graph embeddings. Space-based models can be converted into graph-based models using techniques from topological data analysis.</p>
-</li>
-<li>
-<p>The semantics and provenance of the underlying model matter just as much as the metrics that are applied “on top”.</p>
-</li>
-<li>
-<p>Not yet making any strong claims about which are most valid. Many of these should not be used for optimization.</p>
-</li>
+<li>The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).</li>
+<li>Graph-based models can be converted into space-based models using graph embeddings. Space-based models can be converted into graph-based models using techniques from topological data analysis.</li>
+<li>The semantics and provenance of the underlying model matter just as much as the metrics that are applied “on top”.</li>
+<li>Not yet making any strong claims about which are most valid. Many of these should not be used for optimization.</li>
 </ul>
 <h1 id="table-of-metrics">Table of Metrics</h1>
 <div class="outer-wrap" id="table-of-metrics">
@@ -415,7 +386,7 @@
 
 	});
 
-	render(document.querySelector('.inner-wrap'), html`${Table()}`);
+	render(document.querySelector('.inner-wrap'), Table());
 
 </script>
 		
@@ -444,65 +415,7 @@
 	</div>
 	
 
-	<script>
-		// UTILITY FUNCTIONS FOR COLLAPSIBLE SECTIONS
 
-		// document.querySelector('.collapsible')
-		// 	.addEventListener("click", function(ev) {
-		// 		ev.target.classList.toggle('collapsed');
-		// 	})
-
-		// UTILITY FUNCTIONS FOR CITATION POPUPS.
-
-		var mouseOverModal = false;
-
-		function create_modal_ref(el, id) {
-			
-			let bibref = document.querySelector(`#bib-${id}`),
-				text_column = document.querySelector('article > p').getBoundingClientRect();
-
-			let ref = document.createElement("div");
-			ref.setAttribute('class', 'hover-ref');
-			ref.setAttribute('style', `top: ${el.getBoundingClientRect().bottom + 10}px; left: ${text_column.left}px; width: ${text_column.right - text_column.left}px;`)
-			ref.setAttribute('onmouseenter', 'hovering()');
-			ref.setAttribute('onmouseleave', 'unhovering()');
-			ref.innerHTML = bibref.innerHTML;
-
-			document.querySelector('article').appendChild(ref); 
-
-			mouseOverModal = true;
-		}
-
-		function destroy_modal_ref() {
-			mouseOverModal = false;
-			setTimeout(() => {
-				if (!mouseOverModal) {
-					let refs = document.querySelectorAll('.hover-ref');
-					for (let ref of refs) {
-						ref.remove();
-					}
-				}
-			}, 150);
-		}
-
-		function hovering() {
-			mouseOverModal = true;
-		}
-
-		function unhovering() {
-			mouseOverModal = false;
-			setTimeout(() => {
-				if (!mouseOverModal) {
-					let refs = document.querySelectorAll('.hover-ref');
-					for (let ref of refs) {
-						ref.remove();
-					}
-				}
-			}, 150);
-		}
-	</script>
-
-	
 
 
 	
@@ -517,17 +430,12 @@
 		// })
 
 		// Add 'active' class to the relevant link in the header.
-		let links = document.querySelectorAll('header nav a');
-		for (let k = 0; k < links.length; k++) {
-			if (links[k].href == `${window.location.origin}${window.location.pathname}`) {
-				links[k].classList.add('active');
-			}
-		}
-
-		// Specify top offset when scrolling using # links.
-		// window.addEventListener("hashchange", function () {
-		// 	window.scrollTo(window.scrollX, window.scrollY - 100);
-		// });
+		// let links = document.querySelectorAll('header nav a');
+		// for (let k = 0; k < links.length; k++) {
+		// 	if (links[k].href == `${window.location.origin}${window.location.pathname}`) {
+		// 		links[k].classList.add('active');
+		// 	}
+		// }
 
 	</script>
 

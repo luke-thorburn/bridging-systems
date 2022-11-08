@@ -295,6 +295,6 @@ This page contains a comprehensive review of metrics that have been proposed to 
 
 	});
 
-	render(document.querySelector('.inner-wrap'), html`${Table()}`);
+	render(document.querySelector('.inner-wrap'), Table());
 
 </script>
