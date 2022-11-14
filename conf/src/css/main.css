@@ -6,7 +6,7 @@
   --default-text: #141414;
   --c1-dark: #4a148c;
   --c1-light: #fcf3ff;
-  --header-height: 106px;
+  --header-height: 0px;
 }
 
 html {
@@ -61,8 +61,6 @@ header, main, footer {
 }
 
 header {
-  position: sticky;
-  top: 0;
   z-index: 999;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -249,26 +247,26 @@ article hr {
 }
 article h1 {
   font-size: 1.6rem;
-  font-weight: 300;
+  font-weight: 600;
   color: #4a148c;
   text-transform: capitalize;
 }
 article h1.title {
   color: #000;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 2rem;
   text-transform: none;
 }
 article h2 {
   font-size: 1.3rem;
-  font-weight: 300;
-  font-style: italic;
+  font-weight: 400;
   color: #4a148c;
 }
 article h2.description {
   font-weight: 600;
   font-style: normal;
   font-size: 1.2rem;
+  color: #141414;
 }
 article h3 {
   font-size: 1rem;
@@ -776,7 +774,7 @@ article div.hover-ref .title {
   font-weight: 500;
 }
 .backmatter pre {
-  background-color: #fae8ff;
+  background-color: #f6f6f6;
   overflow-x: scroll;
   scroll-behavior: smooth;
   padding: 10px 15px;
@@ -823,7 +821,7 @@ article div.hover-ref .title {
 .metrics-table {
   /*display: grid;*/
   /*grid-template-columns: repeat(6, auto);*/
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
   background-color: #f6f6f6;
   border-collapse: collapse;
   text-align: left;
@@ -837,8 +835,8 @@ article div.hover-ref .title {
 }
 
 .inner-wrap::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   background-color: transparent;
 }
 
@@ -874,7 +872,7 @@ article div.hover-ref .title {
 }
 
 .metrics-table th .label {
-  padding: 10px 0 10px 1.5rem;
+  padding: 10px 0 10px 1rem;
 }
 
 .metrics-table th .actions {
@@ -897,7 +895,7 @@ article div.hover-ref .title {
 }
 
 .metrics-table th .actions button:last-of-type {
-  padding-right: 1.5rem;
+  padding-right: 1rem;
 }
 
 .metrics-table th:hover .actions button {
@@ -962,8 +960,19 @@ article div.hover-ref .title {
 .metrics-table td {
   /*display: grid;*/
   vertical-align: center;
-  padding: 10px 1.5rem;
+  padding: 10px 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   /*justify-content: center;*/
+}
+.metrics-table td ul {
+  margin: 0;
+}
+.metrics-table td ul li {
+  padding-left: 16px;
+}
+.metrics-table td ul li:last-of-type {
+  padding-bottom: 0;
 }
 
 .metrics-table td.data {
@@ -972,6 +981,22 @@ article div.hover-ref .title {
 
 .metrics-table td.text {
   font-family: var(--serif-stack);
+}
+
+.metrics-table td.tags > div {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 1px 7px 4px 7px;
+  width: fit-content;
+  margin: 3px 6px 3px 0;
+  float: left;
+}
+
+.metrics-table tr:hover td.tags > div {
+  background-color: #fae8ff;
+}
+.metrics-table tr:hover td.tags:hover > div {
+  background-color: #f6dcfd;
 }
 
 .metrics-table td:first-child, .metrics-table th:first-child {
@@ -1006,21 +1031,21 @@ article div.hover-ref .title {
 }
 
 .metrics-table tr:nth-of-type(2n+1) td {
-  background-color: #f6f6f6;
+  background-color: #fafafa;
 }
 
 .metrics-table tr:nth-of-type(2n) td {
-  background-color: #fbfbfb;
+  background-color: #fff;
 }
 
 .metrics-table tr:hover td {
-  background-color: #f0f0f0;
+  background-color: #fcf3ff;
   /*border-top: 1px solid blue;
   border-bottom: 1px solid blue;*/
 }
 
 .metrics-table tr:hover td:hover {
-  background-color: #eaeaea;
+  background-color: #fae8ff;
 }
 
 .outer-wrap > button {
@@ -1036,7 +1061,7 @@ article div.hover-ref .title {
   background-color: #4a148c;
   color: #fff;
   padding: 5px 10px;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;

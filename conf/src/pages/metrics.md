@@ -17,6 +17,8 @@ This page contains a comprehensive review of metrics that have been proposed to 
 
 # Table of Metrics
 
+Use the `Esc` key to toggle full screen.
+
 <div class="outer-wrap" id="table-of-metrics">
 	<button onclick="document.querySelector('html').classList.toggle('fullscreen')">
 		<span class="expand"><i class="fas fa-expand-wide"></i>&ensp;View Fullscreen</span>
@@ -30,6 +32,8 @@ This page contains a comprehensive review of metrics that have been proposed to 
 # Future Work
 
 <script>
+
+	let md = window.markdownit();
 
 	document.onkeydown = function(evt) {
 		evt = evt || window.event;
@@ -51,17 +55,39 @@ This page contains a comprehensive review of metrics that have been proposed to 
 			minWidth: 200
 		},
 		{
-			key: 'concept',
-			label: 'Concept',
-			minWidth: 200,
+			key: 'intuition',
+			label: 'Intuition',
+			minWidth: 300
+		},
+		{
+			key: 'scope',
+			label: 'Scope',
+			minWidth: 140,
+			type: 'data',
 			filter: true,
-			values: [],
-			filters: {}
+			values: [
+				'individual',
+				'group',
+				'population'
+			],
+			transform: value => {
+				switch (value) {
+					case "individual":
+						return html`<i class="far fa-user"></i> individual`;
+					case "group":
+						return html`<i class="far fa-users"></i> sub-group`;
+					case "population":
+						return html`<i class="far fa-globe-asia"></i> population`;
+					default:
+						return '';
+				}
+			},
+			filters: {},
 		},
 		{
 			key: 'modelType',
 			label: 'Model Type',
-			minWidth: 250,
+			minWidth: 160,
 			type: 'data',
 			filter: true,
 			values: [
@@ -71,44 +97,41 @@ This page contains a comprehensive review of metrics that have been proposed to 
 			filters: {},
 			transform: value => {
 				return value == "graph"
-						? html`<i class="fal fa-chart-network"></i> GRAPH`
+						? html`<i class="far fa-chart-network"></i> graph`
 						: (value == "space" 
-							? html`<i class="fal fa-chart-scatter"></i> SPACE`
+							? html`<i class="far fa-chart-scatter"></i> space`
 							: value
 				  		  )
 			}
 		},
 		{
-			key: 'scope',
-			label: 'Scope',
-			minWidth: 200,
-			type: 'data',
+			key: 'requiredStructure',
+			label: 'Structure Needed',
+			minWidth: 250,
+			type: 'tags',
 			filter: true,
 			values: [
-				'individual',
-				'group',
-				'population'
+				'groups',
+				'signed edges'
 			],
 			filters: {},
-		},
-		{
-			key: 'needsGroups',
-			label: 'Needs Groups',
-			minWidth: 250,
-			filter: true,
-			values: [],
-			filters: {},
 			transform: value => {
-				return value == 'Yes'
-					? html`<i class="fas fa-check"></i>`
-					: html`<i class="fas fa-times"></i>`
+				if (value == undefined) {
+					return '';
+				} else {
+					let strs = value.split(', ');
+					return strs.map(s => html`<div>${s}</div>`);
+				}
 			}
 		},
-		{
-			key: 'intuition',
-			label: 'Intuition',
-			minWidth: 400
-		},
+		// {
+		// 	key: 'concept',
+		// 	label: 'Concept',
+		// 	minWidth: 150,
+		// 	filter: true,
+		// 	values: [],
+		// 	filters: {}
+		// },
 		{
 			key: 'formula',
 			label: 'Formula',
@@ -119,9 +142,27 @@ This page contains a comprehensive review of metrics that have been proposed to 
 		{
 			key: 'limitations',
 			label: 'Limitations',
-			minWidth: 600
+			minWidth: 400,
+			transform: value => {
+				if (typeof(value) == "string") {
+					return { html: md.render(value) };
+				} else {
+					return '';
+				}
+			}
 		},
-		
+		{
+			key: 'references',
+			label: 'References',
+			minWidth: 200,
+			transform: value => {
+				if (typeof(value) == "string") {
+					return { html: md.render(value) };
+				} else {
+					return '';
+				}
+			}
+		},
 	]
 
 	const Row = Component(function(m, columns, setColumns) {
@@ -177,7 +218,19 @@ This page contains a comprehensive review of metrics that have been proposed to 
 				let columns = [...prevColumns];
 				columns = columns.map(c => {
 					if (c.filter) {
-						c.values = Array(...(new Set(metrics.map(m => m[c.key])))).filter(d => Boolean(d)).sort();
+						if (c.type == "tags") {
+							let tags = [];
+							metrics.forEach(m => {
+								tags = tags.concat((m[c.key] == undefined ? '' : m[c.key]).split(','));
+							})
+							c.values = Array(...(new Set(tags))).filter(d => Boolean(d)).sort();
+						} else {
+							c.values = Array(...(new Set(metrics.map(m => m[c.key])))).filter(d => Boolean(d)).sort();
+						}
+						if (metrics.map(m => m[c.key]).filter(d => d == undefined).length > 0) {
+							c.values = c.values.concat(['NONE']);
+						}
+
 						c.filters = {};
 						for (let v of c.values) {
 							c.filters[v] = true;
@@ -276,7 +329,16 @@ This page contains a comprehensive review of metrics that have been proposed to 
 					.filter(m => {
 						let included = true;
 						columns.filter(c => c.filter).forEach(c => {
-							included = included & c.filters[m[c.key]];
+							if (c.type == 'tags') {
+								let tags = (m[c.key] == undefined ? 'NONE' : m[c.key]).split(', '),
+									hasTag = false;
+								tags.forEach(t => {
+									hasTag = hasTag | c.filters[t];
+								})
+								included = included & hasTag;
+							} else {
+								included = included & c.filters[m[c.key] == undefined ? 'NONE' : m[c.key]];
+							}
 						})
 						return included;
 					})

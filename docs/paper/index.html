@@ -27,6 +27,8 @@
 	</script>
 	<script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 	<script src="/js/lib/neverland.js"></script>
+	<script src="/js/lib/markdown-it.js"></script>
+	
 	
 
 	
@@ -40,8 +42,6 @@
 	<!-- Styling -->
 	<script src="https://kit.fontawesome.com/52e6b7f776.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/css/main.css">
-
-	
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -176,12 +176,12 @@
 		// })
 
 		// Add 'active' class to the relevant link in the header.
-		// let links = document.querySelectorAll('header nav a');
-		// for (let k = 0; k < links.length; k++) {
-		// 	if (links[k].href == `${window.location.origin}${window.location.pathname}`) {
-		// 		links[k].classList.add('active');
-		// 	}
-		// }
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == `${window.location.origin}${window.location.pathname}`) {
+				links[k].classList.add('active');
+			}
+		}
 
 	</script>
 
