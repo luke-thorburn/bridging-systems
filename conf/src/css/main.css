@@ -965,6 +965,9 @@ article div.hover-ref .title {
   line-height: 1.5rem;
   /*justify-content: center;*/
 }
+.metrics-table td p {
+  margin: 0;
+}
 .metrics-table td ul {
   margin: 0;
 }
@@ -1046,6 +1049,17 @@ article div.hover-ref .title {
 
 .metrics-table tr:hover td:hover {
   background-color: #fae8ff;
+}
+
+.safe {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.safe.no {
+  color: #b71c1c;
+}
+.safe.maybe {
+  color: #4a148c;
 }
 
 .outer-wrap > button {

@@ -87,7 +87,7 @@
 
 		<aside>
 			
-	<nav class="table-of-contents"><ol><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#notation">Notation</a></li><li><a href="#future-work">Future Work</a></li></ol></nav>
+	<nav class="table-of-contents"><ol><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#notation">Notation</a><ol><li><a href="#graphs">Graphs</a></li><li><a href="#spaces">Spaces</a></li></ol></li></ol></nav>
 
 		</aside>
 
@@ -119,337 +119,32 @@
 	</button>
 	<div class="inner-wrap"></div>
 </div>
+<script src="/js/metrics-table.js"></script>
 <h1 id="notation">Notation</h1>
-<h1 id="future-work">Future Work</h1>
-<script>
+<h2 id="graphs">Graphs</h2>
+<ul>
+<li>$G(V,E)$ is the graph</li>
+<li>$v\in V$ vertices</li>
+<li>$d(v)$ degree of vertex $v$</li>
+<li>$d_i(v)$ vertices in group $i$ to which $v$ is connected</li>
+<li>$G_1,\dots,G_M$ are the groups or clusters of vertices</li>
+<li>$g(v)$ the group of vertex $v$</li>
+<li>$E$ the set of edges</li>
+<li>$R(t)$ a random walk on the graph, as a function of time $t$</li>
+<li>$G_i^+$ the set of $k$ highest-degree nodes in each group</li>
+<li>$c(G)$ is the number of 3-cycles in a graph, $c_+(G)$ is the number of positive 3-cycles in a graph, where the sign of a graph is the product of the signs of its edges</li>
+</ul>
+<h2 id="spaces">Spaces</h2>
+<ul>
+<li>$\mathcal{X}$ is the set of points representing individuals</li>
+<li>$N$ number of individuals</li>
+<li>$n_i$ number of individuals in group $i$</li>
+<li>$\bar{x}$ is the mean of the points in $\mathcal{X}$</li>
+<li>$B_r(x)$ ball of radius $r$ centered on $x$</li>
+<li>$M$ number of groups or clusters</li>
+<li>$G_1,\dots,G_M$ are the groups or clusters</li>
+</ul>
 
-	let md = window.markdownit();
-
-	document.onkeydown = function(evt) {
-		evt = evt || window.event;
-		let isEscape = false;
-		if ("key" in evt) {
-			isEscape = (evt.key === "Escape" || evt.key === "Esc");
-		}
-		if (isEscape) {
-			document.querySelector('html').classList.toggle('fullscreen');
-		}
-	};
-
-	const {neverland: Component, render, html, useState, useEffect} = window.neverland;
-
-	let columnSpecs = [
-		{
-			key: 'metric',
-			label: 'Metric',
-			minWidth: 200
-		},
-		{
-			key: 'intuition',
-			label: 'Intuition',
-			minWidth: 300
-		},
-		{
-			key: 'scope',
-			label: 'Scope',
-			minWidth: 140,
-			type: 'data',
-			filter: true,
-			values: [
-				'individual',
-				'group',
-				'population'
-			],
-			transform: value => {
-				switch (value) {
-					case "individual":
-						return html`<i class="far fa-user"></i> individual`;
-					case "group":
-						return html`<i class="far fa-users"></i> sub-group`;
-					case "population":
-						return html`<i class="far fa-globe-asia"></i> population`;
-					default:
-						return '';
-				}
-			},
-			filters: {},
-		},
-		{
-			key: 'modelType',
-			label: 'Model Type',
-			minWidth: 160,
-			type: 'data',
-			filter: true,
-			values: [
-				'graph',
-				'space'
-			],
-			filters: {},
-			transform: value => {
-				return value == "graph"
-						? html`<i class="far fa-chart-network"></i> graph`
-						: (value == "space" 
-							? html`<i class="far fa-chart-scatter"></i> space`
-							: value
-				  		  )
-			}
-		},
-		{
-			key: 'requiredStructure',
-			label: 'Structure Needed',
-			minWidth: 250,
-			type: 'tags',
-			filter: true,
-			values: [
-				'groups',
-				'signed edges'
-			],
-			filters: {},
-			transform: value => {
-				if (value == undefined) {
-					return '';
-				} else {
-					let strs = value.split(', ');
-					return strs.map(s => html`<div>${s}</div>`);
-				}
-			}
-		},
-		// {
-		// 	key: 'concept',
-		// 	label: 'Concept',
-		// 	minWidth: 150,
-		// 	filter: true,
-		// 	values: [],
-		// 	filters: {}
-		// },
-		{
-			key: 'formula',
-			label: 'Formula',
-			transform: value => {
-				return html`<span>${value}</span>`;
-			}
-		},
-		{
-			key: 'limitations',
-			label: 'Limitations',
-			minWidth: 400,
-			transform: value => {
-				if (typeof(value) == "string") {
-					return { html: md.render(value) };
-				} else {
-					return '';
-				}
-			}
-		},
-		{
-			key: 'references',
-			label: 'References',
-			minWidth: 200,
-			transform: value => {
-				if (typeof(value) == "string") {
-					return { html: md.render(value) };
-				} else {
-					return '';
-				}
-			}
-		},
-	]
-
-	const Row = Component(function(m, columns, setColumns) {
-
-		return html.for(m)`<tr onclick="${() => {
-			setColumns(prevColumns => {
-				let columns = [...prevColumns];
-				columns.forEach(c => {
-					c.showFilters = false;
-				})
-				return columns;
-			})
-		}}">
-
-			${columns.map((c, idx) => {
-				return html`
-					<td class="${c.type ? c.type : ''}">
-						${c.transform
-							? c.transform(m[c.key])
-							: m[c.key]
-						}
-					</td>
-				`;
-			})}
-			
-		</tr>`;
-
-	})
-
-	const Table = Component(function() {
-
-		let [metrics, setMetrics] = useState([]);
-		let [sort, setSort] = useState({
-			key: false,
-			direction: -1
-		});
-
-		useEffect(() => {
-
-			fetch('/data/metrics.json')
-				.then(response => response.json())
-				.then(data => {
-					setMetrics(data);
-				})
-
-		}, []);
-
-		let [columns, setColumns] = useState(columnSpecs);
-
-		useEffect(() => {
-
-			setColumns(prevColumns => {
-				let columns = [...prevColumns];
-				columns = columns.map(c => {
-					if (c.filter) {
-						if (c.type == "tags") {
-							let tags = [];
-							metrics.forEach(m => {
-								tags = tags.concat((m[c.key] == undefined ? '' : m[c.key]).split(','));
-							})
-							c.values = Array(...(new Set(tags))).filter(d => Boolean(d)).sort();
-						} else {
-							c.values = Array(...(new Set(metrics.map(m => m[c.key])))).filter(d => Boolean(d)).sort();
-						}
-						if (metrics.map(m => m[c.key]).filter(d => d == undefined).length > 0) {
-							c.values = c.values.concat(['NONE']);
-						}
-
-						c.filters = {};
-						for (let v of c.values) {
-							c.filters[v] = true;
-						}
-					}
-					return c;
-				})
-				return columns;
-			})
-
-		}, [JSON.stringify(metrics)])
-
-		useEffect(() => {
-			if (MathJax.typeset) {
-				MathJax.typeset();
-			}
-		}, [JSON.stringify(columns), sort.key, sort.direction])
-
-		return html`<table class="metrics-table">
-
-			<thead>
-				<tr>
-					${columns.map(c => {
-						return html`<th style="${c.minWidth ? `min-width: ${c.minWidth}px;` : ''}">
-							<div>
-								<div class="label">${c.label}</div>
-								<div class="actions">
-									<button
-										onclick="${() => {
-											setSort(prevSort => {
-												let sort = {...prevSort};
-												sort.direction = (sort.key == c.key) ? -1*sort.direction : 1;
-												sort.key = c.key;
-												return sort;
-											})
-										}}"
-										class="${sort.key == c.key ? 'active' : ''}"
-										>
-											${sort.key != c.key
-												? html`<i class="fas fa-sort"></i>`
-												: (sort.direction == 1
-													? html`<i class="fad fa-sort-up"></i>`
-													: html`<i class="fad fa-sort-down"></i>`)}
-										</button>
-									
-									${c.filter
-										? html`<button
-											onclick="${() => {
-												setColumns(prevColumns => {
-													let columns = [...prevColumns];
-													columns = columns.map(d => {
-														if (d.key == c.key) {
-															d.showFilters = !Boolean(d.showFilters);
-														}
-														return d;
-													})
-													return columns;
-												})
-											}}"
-											class="${(c.showFilters | Object.values(c.filters).filter(d => !d).length > 0) ? 'active' : ''}"
-											><i class="fas fa-filter"></i></button>` : ''}
-									
-									${c.filter ? html`<div class="filters ${c.showFilters ? '' : 'hide'}">
-										${c.values.map(d => html`<div>
-											<input
-												type="checkbox"
-												id="${c.key}-${d}"
-												name="${c.key}-${d}"
-												checked="${c.filters[d]}"
-												onchange="${() => {
-													setColumns(prevColumns => {
-														let columns = [...prevColumns];
-														columns = columns.map(col => {
-															if (col.key == c.key) {
-																col.filters[d] = !col.filters[d];
-															}
-															return col;
-														})
-														return columns;
-													})
-												}}">
-											<label for="${c.key}-${d}">${d}</label>
-										</div>`)}
-									</div>` : ''}
-								
-								</div>
-							</div>
-						</th>`;
-					})}
-				</tr>
-			</thead>
-
-			<tbody>
-
-				${JSON.parse(JSON.stringify(metrics))
-					.filter(m => {
-						let included = true;
-						columns.filter(c => c.filter).forEach(c => {
-							if (c.type == 'tags') {
-								let tags = (m[c.key] == undefined ? 'NONE' : m[c.key]).split(', '),
-									hasTag = false;
-								tags.forEach(t => {
-									hasTag = hasTag | c.filters[t];
-								})
-								included = included & hasTag;
-							} else {
-								included = included & c.filters[m[c.key] == undefined ? 'NONE' : m[c.key]];
-							}
-						})
-						return included;
-					})
-					.sort((a, b) => {
-						if (sort.key) {
-							return sort.direction * ( 2*Number(a[sort.key] > b[sort.key]) - 1 );
-						} else {
-							return 1;
-						}
-					})
-					.map(m => Row(m, columns, setColumns))}
-
-			</tbody>
-
-		</table>`;
-
-	});
-
-	render(document.querySelector('.inner-wrap'), Table());
-
-</script>
 		
 
 	</article>

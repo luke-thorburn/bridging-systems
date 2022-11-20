@@ -1291,6 +1291,10 @@ article {
 	line-height: 1.5rem;
 	/*justify-content: center;*/
 
+	p {
+		margin: 0;
+	}
+
 	ul {
 		margin: 0;
 
@@ -1376,6 +1380,19 @@ article {
 
 .metrics-table tr:hover td:hover {
 	background-color: $c1-light-tone;
+}
+
+.safe {
+
+	font-weight: 600;
+	text-transform: uppercase;
+
+	&.no {
+		color: #b71c1c;
+	}
+	&.maybe {
+		color: $c1-dark;
+	}
 }
 
 .outer-wrap > button {
