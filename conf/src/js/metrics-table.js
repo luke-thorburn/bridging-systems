@@ -11,7 +11,7 @@ document.onkeydown = function(evt) {
 	}
 };
 
-document.querySelector('html').classList.toggle('fullscreen');
+// document.querySelector('html').classList.toggle('fullscreen');
 
 const {neverland: Component, render, html, useState, useEffect} = window.neverland;
 
