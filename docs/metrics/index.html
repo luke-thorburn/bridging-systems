@@ -87,7 +87,7 @@
 
 		<aside>
 			
-	<nav class="table-of-contents"><ol><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#notation">Notation</a><ol><li><a href="#graphs">Graphs</a></li><li><a href="#spaces">Spaces</a></li></ol></li></ol></nav>
+	<nav class="table-of-contents"><ol><li><a href="#please-note">Please Note</a></li><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#notation">Notation</a><ol><li><a href="#graph">Graph</a></li><li><a href="#space">Space</a></li></ol></li></ol></nav>
 
 		</aside>
 
@@ -103,14 +103,16 @@
 		<h2 class="description">A review of metrics for quantifying degrees of "division" or "polarization".</h2>
 	
 		
-			<ul>
-<li>The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).</li>
-<li>Graph-based models can be converted into space-based models using graph embeddings. Space-based models can be converted into graph-based models using techniques from topological data analysis.</li>
-<li>The semantics and provenance of the underlying model matter just as much as the metrics that are applied “on top”.</li>
-<li>Not yet making any strong claims about which are most valid. Many of these should not be used for optimization.</li>
-</ul>
+			<p>The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. figure <strong>A</strong>, or a network of Twitter followers) or a set of points in Euclidean space (e.g. figure <strong>B</strong>, or user embeddings on a social media platform).</p>
+<div class="fig outset-2">
+	<img src="/img/model-types.png" alt="Simple examples of graph-based and space-based relation models." />
+</div>
+<p>As per the terminology introduced in the <a href="/paper/">paper</a>, these are examples of <strong>relation metrics</strong>, because they summarize the <em>state</em> of a relation model at a give point in time. In contrast <strong>bridging metrics</strong>—not yet reviewed here—summarize a <em>change</em> in relation metrics over time.</p>
+<h1 id="please-note">Please Note</h1>
+<p>Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an <a href="/paper/">attention-allocation system</a> (such as a social media platform) without considerable care to monitor and avoid unintended consequences.</p>
+<p>Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people’s patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.</p>
 <h1 id="table-of-metrics">Table of Metrics</h1>
-<p>Use the <code>Esc</code> key to toggle full screen.</p>
+<p>To toggle fullscreen mode, use your <code>Esc</code> key or the purple button in the table.</p>
 <div class="outer-wrap" id="table-of-metrics">
 	<button onclick="document.querySelector('html').classList.toggle('fullscreen')">
 		<span class="expand"><i class="fas fa-expand-wide"></i>&ensp;View Fullscreen</span>
@@ -120,29 +122,17 @@
 </div>
 <script src="/js/metrics-table.js"></script>
 <h1 id="notation">Notation</h1>
-<h2 id="graphs">Graphs</h2>
+<p>Here, we introduce the notation used in the formulae in the above table. The notation differs by model type.</p>
+<h2 id="graph">Graph</h2>
+<p>Let $G=(V,E)$ denote a (mathematical) graph, where $V$ is the set of vertices and $E$ is the set of edges. Optionally, the vertices may each belong to one of $M$ groups, denoted $G_1,\dots,G_M$, which form a partition of $V$. For a vertex $v\in V$, we use $d(v)$ to denote the degree of the vertex and $d_i(v)$ to denote the numbe of vertices in group $i$ to which $v$ is connected. If there are groups, $g(v)$ refers to the group which contains vertex $v$.</p>
+<p>There are a few more specific notations that are only used in a small number of metrics.</p>
 <ul>
-<li>$G(V,E)$ is the graph</li>
-<li>$v\in V$ vertices</li>
-<li>$d(v)$ degree of vertex $v$</li>
-<li>$d_i(v)$ vertices in group $i$ to which $v$ is connected</li>
-<li>$G_1,\dots,G_M$ are the groups or clusters of vertices</li>
-<li>$g(v)$ the group of vertex $v$</li>
-<li>$E$ the set of edges</li>
-<li>$R(t)$ a random walk on the graph, as a function of time $t$</li>
-<li>$G_i^+$ the set of $k$ highest-degree nodes in each group</li>
-<li>$c(G)$ is the number of 3-cycles in a graph, $c_+(G)$ is the number of positive 3-cycles in a graph, where the sign of a graph is the product of the signs of its edges</li>
+<li>$R(t)$ denotes a random walk on the graph, as a function of time $t$. In the formulae, we simply write $R(\mathsf{start})$ or $R(\mathsf{end})$, which should be interpreted in the intuitive way.</li>
+<li>For a given $1&lt;i&lt;M$, $G_i^+$ denotes the set of $k$ highest-degree nodes in group $G_i$.</li>
+<li>If $G$ is a signed graph, $G=(V,E^+,E^-)$, then $c(G)$ denotes is the number of 3-cycles in a graph, and $c_+(G)$ is the number of positive 3-cycles in a graph, where the sign of a cycle is the product of the signs of its edges.</li>
 </ul>
-<h2 id="spaces">Spaces</h2>
-<ul>
-<li>$\mathcal{X}$ is the set of points representing individuals</li>
-<li>$N$ number of individuals</li>
-<li>$n_i$ number of individuals in group $i$</li>
-<li>$\bar{x}$ is the mean of the points in $\mathcal{X}$</li>
-<li>$B_r(x)$ ball of radius $r$ centered on $x$</li>
-<li>$M$ number of groups or clusters</li>
-<li>$G_1,\dots,G_M$ are the groups or clusters</li>
-</ul>
+<h2 id="space">Space</h2>
+<p>Let $\mathcal{X}$ be a set of $N$ points in some metric space $\mathcal{R}$. Optionally, the points may each belong to one of $M$ groups, denoted $G_1,\dots,G_M$, which form a partition of $\mathcal{X}$. The number of points in group $G_i$ is denoted $n_i$. We use $\bar{x}$ to denote the mean of the points in $\mathcal{X}$, and $B_r(x)$ to denote a ball of radius $r$ centered on a given point $x\in\mathcal{X}$.</p>
 
 		
 
@@ -166,6 +156,20 @@
 		</section>
 
 		
+		<section>
+		<h1>Citation</h1>
+		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
+		<pre class="wrap">Thorburn and Ovadya, "Relation Metrics", Bridging Systems, .</pre>
+		<p>Here is the BibTeX entry.</p>
+<pre>@article{metrics,
+  author = {Thorburn, Luke and Ovadya, Aviv},
+  title = {Relation Metrics},
+  journal = {Bridging Systems},
+  year = {},
+  url = {https://bridging.systems/metrics/}
+}</pre>
+		</section>
+	
 
 	</div>
 	
