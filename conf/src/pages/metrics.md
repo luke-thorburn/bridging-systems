@@ -3,10 +3,19 @@ permalink: false
 templateEngineOverride: njk
 tags: post
 title: Relation Metrics
-description: A review of metrics for quantifying degrees of "division" or "polarization".
 slug: metrics
 menuTitle: Metrics
 position: 3
+authors:
+  - name:
+      first: Luke
+      last: Thorburn
+      url: https://lukethorburn.com/
+  - name:
+      first: Aviv
+      last: Ovadya
+      url: https://aviv.me/
+description: A review of metrics for quantifying degrees of "division" or "polarization".
 ---
 
 - The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).
