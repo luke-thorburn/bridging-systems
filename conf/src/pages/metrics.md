@@ -26,12 +26,6 @@ The metrics are designed to summarize an abstract model of the public sphere, wh
 
 As per the terminology introduced in the [paper](/paper/), these are examples of **relation metrics**, because they summarize the *state* of a relation model at a give point in time. In contrast **bridging metrics**—not yet reviewed here—summarize a *change* in relation metrics over time.
 
-# Please Note
-
-Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an [attention-allocation system](/paper/) (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
-
-Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
-
 # Table of Metrics
 
 To toggle fullscreen mode, use your `Esc` key or the purple button in the table.
@@ -44,6 +38,12 @@ To toggle fullscreen mode, use your `Esc` key or the purple button in the table.
 	<div class="inner-wrap"></div>
 </div>
 <script src="/js/metrics-table.js"></script>
+
+# Caution
+
+Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an [attention-allocation system](/paper/) (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
+
+Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
 
 # Notation
 

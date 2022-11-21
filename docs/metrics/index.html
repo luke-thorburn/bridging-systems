@@ -87,7 +87,7 @@
 
 		<aside>
 			
-	<nav class="table-of-contents"><ol><li><a href="#please-note">Please Note</a></li><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#notation">Notation</a><ol><li><a href="#graph">Graph</a></li><li><a href="#space">Space</a></li></ol></li></ol></nav>
+	<nav class="table-of-contents"><ol><li><a href="#table-of-metrics">Table of Metrics</a></li><li><a href="#caution">Caution</a></li><li><a href="#notation">Notation</a><ol><li><a href="#graph">Graph</a></li><li><a href="#space">Space</a></li></ol></li></ol></nav>
 
 		</aside>
 
@@ -108,9 +108,6 @@
 	<img src="/img/model-types.png" alt="Simple examples of graph-based and space-based relation models." />
 </div>
 <p>As per the terminology introduced in the <a href="/paper/">paper</a>, these are examples of <strong>relation metrics</strong>, because they summarize the <em>state</em> of a relation model at a give point in time. In contrast <strong>bridging metrics</strong>—not yet reviewed here—summarize a <em>change</em> in relation metrics over time.</p>
-<h1 id="please-note">Please Note</h1>
-<p>Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an <a href="/paper/">attention-allocation system</a> (such as a social media platform) without considerable care to monitor and avoid unintended consequences.</p>
-<p>Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people’s patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.</p>
 <h1 id="table-of-metrics">Table of Metrics</h1>
 <p>To toggle fullscreen mode, use your <code>Esc</code> key or the purple button in the table.</p>
 <div class="outer-wrap" id="table-of-metrics">
@@ -121,6 +118,9 @@
 	<div class="inner-wrap"></div>
 </div>
 <script src="/js/metrics-table.js"></script>
+<h1 id="caution">Caution</h1>
+<p>Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an <a href="/paper/">attention-allocation system</a> (such as a social media platform) without considerable care to monitor and avoid unintended consequences.</p>
+<p>Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people’s patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.</p>
 <h1 id="notation">Notation</h1>
 <p>Here, we introduce the notation used in the formulae in the above table. The notation differs by model type.</p>
 <h2 id="graph">Graph</h2>
