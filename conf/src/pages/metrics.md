@@ -2,13 +2,12 @@
 permalink: false
 templateEngineOverride: njk
 tags: post
-title: Metrics
+title: Relation Metrics
+description: A review of metrics for quantifying degrees of "division" or "polarization".
 slug: metrics
 menuTitle: Metrics
 position: 3
 ---
-
-This page contains a comprehensive review of metrics that have been proposed to quantify the degree of division or "polarization" in the public sphere.
 
 - The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. a network of Twitter followers) or a set of points in Euclidean space (e.g. user embeddings on a social media platform).
 - Graph-based models can be converted into space-based models using graph embeddings. Space-based models can be converted into graph-based models using techniques from topological data analysis.

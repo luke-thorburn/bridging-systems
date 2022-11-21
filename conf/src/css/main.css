@@ -249,7 +249,6 @@ article h1 {
   font-size: 1.6rem;
   font-weight: 600;
   color: #4a148c;
-  text-transform: capitalize;
 }
 article h1.title {
   color: #000;
