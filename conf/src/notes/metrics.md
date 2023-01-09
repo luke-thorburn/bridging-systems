@@ -1,11 +1,9 @@
 ---
 permalink: false
 templateEngineOverride: njk
-tags: post
+tags: note
 title: Relation Metrics
 slug: metrics
-menuTitle: Metrics
-position: 3
 authors:
   - name:
       first: Luke

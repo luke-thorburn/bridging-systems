@@ -1,0 +1,173 @@
+---
+pagination:
+  data: collections.note
+  size: 1
+  alias: post
+permalink: /{{ post.data.slug }}/
+---
+
+{% extends 'base.njk' %}
+
+{% block title %}
+	{{ post.data.menuTitle }} | Bridging Systems
+{% endblock %}
+
+{% block head %}
+
+	{% if post.data.dependencies.d3 %}
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v6.min.js"></script>
+	{% endif %}
+
+	{% if post.data.dependencies.vega %}
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+	{% endif %}
+
+	{% if post.data.hidden %}
+		<meta name="robots" content="noindex">
+		<meta name="googlebot" content="noindex">
+	{% endif %}    
+
+{% endblock %}
+
+{% block body_class %}post{% endblock %}
+
+{% block outline %}
+	{{ post.templateContent | outline | safe }}
+{% endblock %}
+
+{% block content %}
+
+	{% if post.data.draft %}
+		<div class="banner">
+			This page is a public draft. All content is provisional.
+		</div>
+	{% endif %}
+
+
+	<article>
+		
+		<h1 class="title">{{ post.data.title }}</h1>
+
+		<h2 class="description">{{ post.data.description | safe }}</h2>
+	
+		{% if post.data.noMarkdown %}
+			{{ post.templateContent | safe }}
+		{% else %}
+			{{ post.templateContent | markdown | footnotes_to_sidenotes | citations | safe }}
+		{% endif %}
+
+	</article>
+
+
+	{% if not post.data.tags.includes('page') %}
+	<div class="backmatter">
+
+		{% if post.data.acknowledgements %}
+			<section>
+				<h1>Acknowledgements</h1>
+				{{ post.data.acknowledgements | markdown | safe }}
+			</section>
+		{% endif %}
+
+		<section>
+			{{ post.templateContent | markdown | get_footnotes | safe }}
+		</section>
+
+		{% if post.data.references %}
+			<section>
+				{{ post.data.references | bibliography | safe }}
+			</section>
+		{% endif %}
+		
+		<section>
+			<h1>License</h1>
+			<p>This website and its content is made available under the <a href="https://github.com/luke-thorburn/bridging-systems/blob/main/LICENSE">MIT License</a>.</p>
+		</section>
+
+		{% if post.data.authors %}
+		<section>
+		<h1>Citation</h1>
+		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
+		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Bridging Systems, {{ post.data.date | get_year }}.</pre>
+		<p>Here is the BibTeX entry.</p>
+<pre>@article{ {{- post.data.slug }}{{ post.data.date | get_year }},
+  author = { {{- post.data.authors | bibtex_authors -}} },
+  title = { {{- post.data.title -}} },
+  journal = {Bridging Systems},
+  year = { {{- post.data.date | get_year -}} },
+  url = {https://bridging.systems/{{ post.data.slug }}/}
+}</pre>
+		</section>
+	{% endif %}
+
+	</div>
+	{% endif %}
+
+	<script type="module">
+		// Add 'active' class to the relevant link in the header.
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == `${window.location.origin}/blog/`) {
+				links[k].classList.add('active');
+			}
+		}
+
+	</script>
+
+{# 	<script>
+
+		// UTILITY FUNCTIONS FOR CITATION POPUPS.
+
+		var mouseOverModal = false;
+
+		function create_modal_ref(el, id) {
+			
+			let bibref = document.querySelector(`#bib-${id}`),
+				text_column = document.querySelector('article > p').getBoundingClientRect();
+
+			let ref = document.createElement("div");
+			ref.setAttribute('class', 'hover-ref');
+			ref.setAttribute('style', `top: ${el.getBoundingClientRect().bottom + 10}px; left: ${text_column.left}px; width: ${text_column.right - text_column.left}px;`)
+			ref.setAttribute('onmouseenter', 'hovering()');
+			ref.setAttribute('onmouseleave', 'unhovering()');
+			ref.innerHTML = bibref.innerHTML;
+
+			document.querySelector('article').appendChild(ref); 
+
+			mouseOverModal = true;
+		}
+
+		function destroy_modal_ref() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+
+		function hovering() {
+			mouseOverModal = true;
+		}
+
+		function unhovering() {
+			mouseOverModal = false;
+			setTimeout(() => {
+				if (!mouseOverModal) {
+					let refs = document.querySelectorAll('.hover-ref');
+					for (let ref of refs) {
+						ref.remove();
+					}
+				}
+			}, 150);
+		}
+	</script> #}
+
+{% endblock %}

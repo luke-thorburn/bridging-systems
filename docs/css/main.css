@@ -77,7 +77,6 @@ header a.logotype, header .outlinks a {
   text-decoration: none;
 }
 header a.logotype .icon, header .outlinks a .icon {
-  background-color: #fae8ff;
   padding: 10px;
   border-radius: 0.35rem;
   font-size: 1.5rem;
@@ -85,6 +84,17 @@ header a.logotype .icon, header .outlinks a .icon {
 }
 header a.logotype .icon:last-of-type, header .outlinks a .icon:last-of-type {
   margin-right: 0px;
+}
+header a.logotype .logo, header .outlinks a .logo {
+  background-image: url(/img/bridge.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fae8ff;
+  height: 43px;
+  width: 115px;
+  border: 10px solid #fae8ff;
+  margin-right: 14px;
 }
 header a.logotype .type, header .outlinks a .type {
   color: #000;
@@ -238,6 +248,9 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
   margin-top: calc(-1 * var(--header-height) - 40px);
   padding-top: calc(var(--header-height) + 40px);
 }
+article .spacer {
+  height: 40px;
+}
 article hr {
   display: block;
   border: 0;
@@ -287,8 +300,9 @@ article a:hover {
 article blockquote {
   border-left: 0.7rem solid #fcf3ff;
   padding-left: 1.4rem;
-  font-size: 0.9rem;
-  line-height: 1.3rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: justify;
 }
 article blockquote p {
   margin: 0 0 1.4rem 0;
@@ -683,6 +697,44 @@ article div.hover-ref a {
 article div.hover-ref .title {
   font-weight: 600;
   padding: 0;
+}
+
+.blocklinks {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px 0 40px 0;
+}
+.blocklinks a {
+  display: block;
+  margin: 0 20px 20px 0;
+  width: 240px;
+  color: #141414;
+}
+.blocklinks a > div {
+  background-color: #f6f6f6;
+  height: 100px;
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  transition: box-shadow 0.1s;
+  font-size: 2rem;
+}
+.blocklinks a:nth-of-type(1) > div {
+  background: linear-gradient(0.25turn, #48da90, #3ac1e8);
+}
+.blocklinks a:nth-of-type(2) > div {
+  background: linear-gradient(0.5turn, #f97716, #faca15);
+}
+.blocklinks a:nth-of-type(3) > div {
+  background: linear-gradient(0.25turn, #e78ef3, #cd2fe1);
+}
+.blocklinks a:hover {
+  text-decoration: none;
+}
+.blocklinks a:hover > div {
+  box-shadow: 0 0 20px #ddd;
 }
 
 .backmatter {

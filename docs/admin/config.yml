@@ -10,11 +10,30 @@ collections:
       fields:
           - {label: "Permalink", name: "permalink", widget: "hidden", default: false}
           - {label: "Template Engine Override", name: "templateEngineOverride", widget: "hidden", default: "njk"}
-          - {label: "Tags", name: "tags", widget: "hidden", default: "post"}
+          - {label: "Tags", name: "tags", widget: "hidden", default: "page"}
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Slug", name: "slug", widget: "string" }
           - { label: "Menu Title", name: "menuTitle", widget: "string" }
           - { label: "Menu Position", name: "position", widget: "number" }
+          - { label: "Hidden", name: "hidden", widget: "boolean", default: true, required: false }
+          - { label: "Authors", name: "authors", widget: "list", required: false, fields: [
+              { label: "Name", name: "name", widget: "object", summary: "{{fields.first}} {{fields.last}}", fields: [
+                { label: "First", name: "first", widget: "string"},
+                { label: "Last", name: "last", widget: "string"},
+                { label: "URL", name: "url", widget: "string", required: false}
+              ] }
+            ] }
+          - { label: "Body", name: "body", widget: "markdown", modes: ["raw"] }
+          - { label: "Acknowledgements", name: "acknowledgements", widget: "markdown", required: false }
+    - name: "note"
+      label: "Note"
+      folder: "conf/src/notes"
+      fields:
+          - {label: "Permalink", name: "permalink", widget: "hidden", default: false}
+          - {label: "Template Engine Override", name: "templateEngineOverride", widget: "hidden", default: "njk"}
+          - {label: "Tags", name: "tags", widget: "hidden", default: "note"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Slug", name: "slug", widget: "string" }
           - { label: "Hidden", name: "hidden", widget: "boolean", default: true, required: false }
           - { label: "Authors", name: "authors", widget: "list", required: false, fields: [
               { label: "Name", name: "name", widget: "object", summary: "{{fields.first}} {{fields.last}}", fields: [

@@ -164,7 +164,7 @@ header {
 		text-decoration: none;
 
 		.icon {
-			background-color: $c1-light-tone;
+			// background-color: $c1-light-tone;
 			padding: 10px;
 			border-radius: $q;
 			font-size: 1.5rem;
@@ -173,6 +173,19 @@ header {
 			&:last-of-type {
 				margin-right: 0px;
 			}
+		}
+
+		.logo {
+			background-image: url(/img/bridge.png);
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: $c1-light-tone;
+			height: 43px;
+			width: 115px;
+			border: 10px solid $c1-light-tone;
+			margin-right: 14px;
+
 		}
 
 		.type {
@@ -377,6 +390,10 @@ article {
 		padding-top: calc(var(--header-height) + 40px);
 	}
 
+	.spacer {
+		height: 40px;
+	}
+
 	font-size: 1.1rem;
 	line-height: 1.8rem;
 
@@ -451,8 +468,9 @@ article {
 		border-left: $h solid $c1-light;
 		padding-left: $p;
 
-		font-size: .9rem;
-		line-height: 1.3rem;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		text-align: justify;
 
 		p {
 			margin: 0 0 $p 0;
@@ -972,6 +990,49 @@ article {
 	}
 }
 
+
+.blocklinks {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 40px 0 40px 0;
+
+	a {
+		display: block;
+		margin: 0 20px 20px 0;
+		width: 240px;
+		color: $default-text;
+
+		& > div {
+			background-color: #f6f6f6;
+			height: 100px;
+			margin: 0 0 10px 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 5px;
+			transition: box-shadow .1s;
+			font-size: 2rem;
+		}
+
+		&:nth-of-type(1) > div {
+			background: linear-gradient(0.25turn, #48da90, #3ac1e8);
+		}
+		&:nth-of-type(2) > div {
+			background: linear-gradient(0.5turn, #f97716, #faca15);
+		}
+		&:nth-of-type(3) > div {
+			background: linear-gradient(0.25turn, #e78ef3, #cd2fe1);
+		}
+
+		&:hover {
+			text-decoration: none;
+
+			& > div {
+				box-shadow: 0 0 20px #ddd;
+			}
+		}
+	}
+}
 
 .backmatter {
 

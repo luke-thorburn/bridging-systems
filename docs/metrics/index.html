@@ -6,7 +6,7 @@
 	
 	<title>
         
-	Metrics | Bridging Systems
+	 | Bridging Systems
 
     </title>
 	
@@ -60,7 +60,7 @@
 	<header>
 
 		<a href="/" class="logotype">
-			<div class="icon"><i class="fa-solid fa-bridge-suspension"></i></div>
+			<div class="logo"></div>
 			<div class="type">Bridging Systems</div>
 		</a>
 
@@ -73,12 +73,6 @@
 		<nav>
 			
 				<a href="/../">Home</a>
-			
-				<a href="/paper/">Paper</a>
-			
-				<a href="/metrics/">Metrics</a>
-			
-				<a href="/working-group/">Working Group</a>
 			
 		</nav>
 	</header>
@@ -173,6 +167,17 @@
 
 	</div>
 	
+
+	<script type="module">
+		// Add 'active' class to the relevant link in the header.
+		let links = document.querySelectorAll('header nav a');
+		for (let k = 0; k < links.length; k++) {
+			if (links[k].href == `${window.location.origin}/blog/`) {
+				links[k].classList.add('active');
+			}
+		}
+
+	</script>
 
 
 
