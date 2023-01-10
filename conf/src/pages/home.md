@@ -12,7 +12,7 @@ acknowledgements: We thank Tim van Gelder and Colin Megill for sharing informati
 ---
 
 <div class="blocklinks">
-	<a href="https://go.aviv.me/bridging-systems-paper" target="_blank">
+	<a href="/files/bridging-systems-working-paper.pdf" target="_blank">
 		<div><i class="fa-light fa-file-pdf"></i></div>
 		Read the paper
 	</a>
@@ -20,7 +20,7 @@ acknowledgements: We thank Tim van Gelder and Colin Megill for sharing informati
 		<div><i class="fa-light fa-chart-line"></i></div>
 		Review metrics
 	</a>
-	<a href="#">
+	<a href="https://forms.gle/qyvF8hVGo4s8sdbH9" target="_blank">
 		<div><i class="fa-light fa-envelope"></i></div>
 		Subscribe for updates
 	</a>
@@ -55,4 +55,4 @@ We are putting together a working group to expand the paper and the broader work
 
 # Contact us
 
-Any enquiries related to this work should be directed to ...
+Any enquiries related to this work should be directed to the authors, whose email addresses are listed in [the paper](/files/bridging-systems-working-paper.pdf).
