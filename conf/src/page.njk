@@ -92,9 +92,9 @@ permalink: /{{ post.data.slug }}/
 		<section>
 		<h1>Citation</h1>
 		<p>In academic contexts, please cite this work using a citation similar to the following.</p>
-		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Bridging Systems, {{ post.data.date | get_year }}.</pre>
+		<pre class="wrap">{{ post.data.authors | citation_authors }}, "{{ post.data.title }}", Bridging Systems, {{ post.data.date | get_year }}, URL:&nbsp;https://bridging.systems/{{ post.data.slug }}/.</pre>
 		<p>Here is the BibTeX entry.</p>
-<pre>@article{ {{- post.data.slug }}{{ post.data.date | get_year }},
+<pre>@misc{ {{- post.data.slug }}{{ post.data.date | get_year }},
   author = { {{- post.data.authors | bibtex_authors -}} },
   title = { {{- post.data.title -}} },
   journal = {Bridging Systems},

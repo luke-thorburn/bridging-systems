@@ -15,6 +15,7 @@ authors:
       last: Ovadya
       url: https://aviv.me/
 description: A review of metrics for quantifying degrees of "division" or "polarization".
+date: 2023-01-10
 ---
 
 The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. figure **A**, or a network of Twitter followers) or a set of points in Euclidean space (e.g. figure **B**, or user embeddings on a social media platform).
@@ -23,7 +24,9 @@ The metrics are designed to summarize an abstract model of the public sphere, wh
 	<img src="/img/model-types.png" alt="Simple examples of graph-based and space-based relation models." />
 </div>
 
-As per the terminology introduced in the [paper](/paper/), these are examples of **relation metrics**, because they summarize the *state* of a relation model at a give point in time. In contrast **bridging metrics**—not yet reviewed here—summarize a *change* in relation metrics over time.
+As per the terminology introduced in the [paper](/files/bridging-systems-working-paper.pdf), these are examples of **relation metrics**, because they summarize the *state* of a relation model at a give point in time. In contrast **bridging metrics**—not yet reviewed here—summarize a *change* in relation metrics over time.
+
+<div class="spacer"></div>
 
 # Table of Metrics
 
@@ -38,11 +41,15 @@ To toggle fullscreen mode, use your `Esc` key or the purple button in the table.
 </div>
 <script src="/js/metrics-table.js"></script>
 
+<div class="spacer"></div>
+
 # Caution
 
-Broadly, our aim with this work is to get better at building systems that reduce destructive division in a population, and these metrics are presented here as possible measures of such division. However, most of the metrics are obviously not plausible measures of destructive division. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an [attention-allocation system](/paper/) (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
+Broadly, our aim with this work is to get better at building systems that increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation. These metrics are presented here as possible measures of this "bridging goal", but most of the metrics are obviously not plausible such measures. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an attention-allocator (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
 
-Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of destructive division when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
+Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance or "semantics" of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of the bridging goal when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
+
+<div class="spacer"></div>
 
 # Notation
 

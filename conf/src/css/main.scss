@@ -162,12 +162,6 @@ header {
 		display: flex;
 		align-items: center;
 		text-decoration: none;
-
-
-		&:hover {
-			background-color: $c1-light-tone;
-			border-radius: $q;
-		}
 		
 		.icon {
 			// background-color: $c1-light-tone;
@@ -204,6 +198,9 @@ header {
 	a.logotype {
 		grid-column: 1 / 2;
 		grid-row: 1 / 2;
+
+		background-color: $c1-light-tone;
+		border-radius: $q;
 	}
 
 	.outlinks {

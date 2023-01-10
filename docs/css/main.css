@@ -76,10 +76,6 @@ header a.logotype, header .outlinks a {
   align-items: center;
   text-decoration: none;
 }
-header a.logotype:hover, header .outlinks a:hover {
-  background-color: #fae8ff;
-  border-radius: 0.35rem;
-}
 header a.logotype .icon, header .outlinks a .icon {
   padding: 10px;
   border-radius: 0.35rem;
@@ -107,6 +103,8 @@ header a.logotype .type, header .outlinks a .type {
 header a.logotype {
   grid-column: 1/2;
   grid-row: 1/2;
+  background-color: #fae8ff;
+  border-radius: 0.35rem;
 }
 header .outlinks {
   grid-column: 3/4;
