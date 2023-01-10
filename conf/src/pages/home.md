@@ -2,13 +2,29 @@
 permalink: false
 templateEngineOverride: njk
 tags: post
-menuTitle: Home
+title: What are bridging systems?
 slug: ..
+menuTitle: Home
 position: 1
 hidden: false
-title: What are bridging systems?
-description: Bridging systems increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation.
-acknowledgements: We thank Tim van Gelder and Colin Megill for sharing information and insights from their work on YourView and Polis, respectively. We would also like to thank Natania Antler, Priyanjana Bengani, Leisel Bogan, Joaquin Quiñonero Candela, Austin Clyde, Joe Edelman, Thomas Gilbert, Amritha Jayanti, Julia Kamin, Andrew Konya, David Krueger, Stephen Larrick, Jesse McCrosky, James Mickens, Kathy Pham, Maria Polukarov, Afsaneh Rigot, Bruce Schneier, Jonathan Stray, Ted Suzman, Carmine Ventre, Jessica Yu, Glen Weyl and Cathy Wu, among others, for helpful discussions and feedback.<br /><br />Any errors or limitations of this work remain those of the authors.<br /><br />Aviv Ovadya was supported in part by a Technology and Public Purpose Fellowship at the Belfer Center for Science and International Affairs, Harvard Kennedy School. Luke Thorburn was supported by UK Research and Innovation [grant number EP/S023356/1], in the UKRI Centre for Doctoral Training in Safe and Trusted Artificial Intelligence ([safeandtrustedai.org](https://safeandtrustedai.org/)), King’s College London.
+acknowledgements: We thank Tim van Gelder and Colin Megill for sharing
+  information and insights from their work on YourView and Polis, respectively.
+  We would also like to thank Natania Antler, Priyanjana Bengani, Leisel Bogan,
+  Joaquin Quiñonero Candela, Austin Clyde, Joe Edelman, Thomas Gilbert, Amritha
+  Jayanti, Julia Kamin, Andrew Konya, David Krueger, Stephen Larrick, Jesse
+  McCrosky, James Mickens, Kathy Pham, Maria Polukarov, Afsaneh Rigot, Bruce
+  Schneier, Jonathan Stray, Ted Suzman, Carmine Ventre, Jessica Yu, Glen Weyl
+  and Cathy Wu, among others, for helpful discussions and feedback.<br /><br
+  />Any errors or limitations of this work remain those of the authors.<br /><br
+  />Aviv Ovadya was supported in part by a Technology and Public Purpose
+  Fellowship at the Belfer Center for Science and International Affairs, Harvard
+  Kennedy School. Luke Thorburn was supported by UK Research and Innovation
+  [grant number EP/S023356/1], in the UKRI Centre for Doctoral Training in Safe
+  and Trusted Artificial Intelligence
+  ([safeandtrustedai.org](https://safeandtrustedai.org/)), King’s College
+  London.
+description: Bridging systems increase mutual understanding and trust across
+  divides, creating space for productive conflict, deliberation, or cooperation.
 ---
 
 <div class="blocklinks">
@@ -44,7 +60,7 @@ You might also be interested in the earlier [policy paper on bridging-based rank
 
 # Who?
 
-[**Aviv Ovadya**](https://aviv.me/) is an Affiliate at the Berkman Klein Center for Internet \& Society at Harvard University, and a Visiting Scholar at the Leverhulme Centre for the Future of Intelligence at Cambridge University.
+[**Aviv Ovadya**](https://aviv.me/) Aviv Ovadya is an affiliate at the Berkman Klein Center for Internet \& Society at Harvard University (at the Institute for Rebooting Social Media), and a visiting scholar at the Leverhulme Centre for the Future of Intelligence at Cambridge University. This work began while he was a Technology and Public Purpose Fellow at the Harvard Kennedy School's Belfer Center. He can be found at his [website](https://aviv.me), as [@metaviv](https://twitter.com/metaviv) on Twitter, on [Mastodon](https://mastodon.online/@aviv), and via his [newsletter](newsletter.aviv.me).
 
 [**Luke Thorburn**](https://lukethorburn.com/) is a researcher in the UKRI Centre for Doctoral Training in Safe and Trusted AI at King's College London.
 
