@@ -36,7 +36,7 @@ As per the terminology introduced in the [paper](/files/bridging-systems-working
 
 # Caution
 
-While these metrics are presented as possible measures of this “bridging goal”,  most are obviously not plausible measures. The best we can say about them is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an attention-allocator (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
+While the metrics below are presented as possible measures of this “bridging goal”,  most are obviously not plausible measures. The best we can say about them is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an attention-allocator (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
 
 Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance or "semantics" of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of the bridging goal when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
 
