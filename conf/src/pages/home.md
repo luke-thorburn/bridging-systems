@@ -17,7 +17,7 @@ acknowledgements: We thank Tim van Gelder and Colin Megill for sharing informati
 		Read the paper
 	</a>
 	<a href="/metrics/">
-		<div><i class="fa-light fa-chart-line"></i></div>
+		<div><i class="fa-light fa-function"></i></div>
 		Review metrics
 	</a>
 	<a href="https://forms.gle/qyvF8hVGo4s8sdbH9" target="_blank">

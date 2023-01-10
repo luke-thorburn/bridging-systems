@@ -163,6 +163,12 @@ header {
 		align-items: center;
 		text-decoration: none;
 
+
+		&:hover {
+			background-color: $c1-light-tone;
+			border-radius: $q;
+		}
+		
 		.icon {
 			// background-color: $c1-light-tone;
 			padding: 10px;
@@ -180,11 +186,10 @@ header {
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;
-			background-color: $c1-light-tone;
 			height: 43px;
 			width: 115px;
-			border: 10px solid $c1-light-tone;
-			margin-right: 14px;
+			border: 10px solid transparent;
+			// margin-right: 10px;
 
 		}
 
@@ -192,6 +197,7 @@ header {
 			color: #000;
 			font-weight: 600;
 			font-size: 1.2rem;
+			margin-right: 10px;
 		}
 	}
 

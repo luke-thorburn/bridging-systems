@@ -76,6 +76,10 @@ header a.logotype, header .outlinks a {
   align-items: center;
   text-decoration: none;
 }
+header a.logotype:hover, header .outlinks a:hover {
+  background-color: #fae8ff;
+  border-radius: 0.35rem;
+}
 header a.logotype .icon, header .outlinks a .icon {
   padding: 10px;
   border-radius: 0.35rem;
@@ -90,16 +94,15 @@ header a.logotype .logo, header .outlinks a .logo {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #fae8ff;
   height: 43px;
   width: 115px;
-  border: 10px solid #fae8ff;
-  margin-right: 14px;
+  border: 10px solid transparent;
 }
 header a.logotype .type, header .outlinks a .type {
   color: #000;
   font-weight: 600;
   font-size: 1.2rem;
+  margin-right: 10px;
 }
 header a.logotype {
   grid-column: 1/2;

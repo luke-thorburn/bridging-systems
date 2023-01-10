@@ -1,7 +1,8 @@
 ---
 permalink: false
 templateEngineOverride: njk
-tags: note
+tags: post
+menuTitle: Metrics
 title: Relation Metrics
 slug: metrics
 authors:
