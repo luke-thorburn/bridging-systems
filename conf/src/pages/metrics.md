@@ -18,7 +18,7 @@ authors:
 date: 2023-01-10
 description: A review of metrics for quantifying degrees of "division" or "polarization".
 ---
-Our aim with this work is to get better at building systems that aim to satisfy the **bridging goal**: *an increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation.* Here we list metrics that have been used in related literature. 
+Our aim with this work is to improve our capacity to develop systems that satisfy the **bridging goal**: *an increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation.* Here we list metrics that have been used in related literature. 
 
 
 # Context
