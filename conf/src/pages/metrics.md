@@ -2,9 +2,9 @@
 permalink: false
 templateEngineOverride: njk
 tags: post
-menuTitle: Metrics
 title: Relation Metrics
 slug: metrics
+menuTitle: Metrics
 position: 2
 authors:
   - name:
@@ -15,9 +15,20 @@ authors:
       first: Aviv
       last: Ovadya
       url: https://aviv.me/
-description: A review of metrics for quantifying degrees of "division" or "polarization".
 date: 2023-01-10
+description: A review of metrics for quantifying degrees of "division" or "polarization".
 ---
+Our aim with this work is to get better at building systems that aim to satisfy the **bridging goal**: *increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation.* Here we list metrics that have been used in related literature. 
+
+# Caution
+
+While these metrics are presented as possible measures of this “bridging goal”,  most are obviously not plausible measures. The best we can say about them is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an attention-allocator (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
+
+Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance or "semantics" of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of the bridging goal when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
+
+<div class="spacer"></div>
+
+# Context
 
 The metrics are designed to summarize an abstract model of the public sphere, which we assume is either a graph (e.g. figure **A**, or a network of Twitter followers) or a set of points in Euclidean space (e.g. figure **B**, or user embeddings on a social media platform).
 
@@ -41,14 +52,6 @@ To toggle fullscreen mode, use your `Esc` key or the purple button in the table.
 	<div class="inner-wrap"></div>
 </div>
 <script src="/js/metrics-table.js"></script>
-
-<div class="spacer"></div>
-
-# Caution
-
-Broadly, our aim with this work is to get better at building systems that increase mutual understanding and trust across divides, creating space for productive conflict, deliberation, or cooperation. These metrics are presented here as possible measures of this "bridging goal", but most of the metrics are obviously not plausible such measures. The best we can say about some of the metrics is that we do not yet know whether they are good measures. For this reason, none of the metrics on this page should be used as optimization targets in an attention-allocator (such as a social media platform) without considerable care to monitor and avoid unintended consequences.
-
-Also, note that these metrics are simply summaries of the structure of some abstract model, such as a graph-based or space-based relation model. The provenance or "semantics" of the underlying relation model is also important to consider. For example, a given metric may be an excellent measure of the bridging goal when applied to a relation model that captures goodwill between people, but be a poor measure when applied to a relation model that captures similarities in people's patterns of engagement on social media. At present, we know very little about which types of relation models and which relation metrics can be validly used as a basis for bridging.
 
 <div class="spacer"></div>
 
