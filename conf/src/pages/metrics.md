@@ -5,6 +5,7 @@ tags: post
 menuTitle: Metrics
 title: Relation Metrics
 slug: metrics
+position: 2
 authors:
   - name:
       first: Luke
